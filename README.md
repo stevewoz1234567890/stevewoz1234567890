@@ -41,7 +41,6 @@ organization's data-driven insights.
 - 🔭 &nbsp; I’m currently working on **programming and software development**
 - 🤝 &nbsp; I’m interested in collaborating with entrepreneurs on **new venture creation & development**
 - 🌱 &nbsp; I’m currently learning **Deep Reinforcement Learning**
-- 🎨 &nbsp; Using [this svg](https://storyset.com/illustration/javascript-frameworks/amico) and Figma I made 👉
 - 💬 &nbsp; Ask me about anything related to **tech & business**; happy to help!
 - 📚 &nbsp; When I am free, I watch **Premier League & La Liga** and **Listen to Music**
 
