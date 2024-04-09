@@ -8,8 +8,6 @@ organization's data-driven insights.
 
 ## Skill Set
 
-<img align="right" width="350" src="https://github.com/mastercodingbear/mastercodingbear/blob/main/img/image03.gif" />
-
 <p style = "margin-left: 30px">
  
 - Python / R / Matlab / Java / C / C++
@@ -19,10 +17,11 @@ organization's data-driven insights.
 - Apache / Kubernetes / Docker / ASP.NET
 - Scikit-Learn / Pandas / MatplotLib / Scikit / Selenium
 - RAG / LLM / Langchain / Langgrpah 
-- Angular / Javascript / React.js / Node.js / React Native / HTML / CSS / Chart.js
+- Angular / Javascript / React.js / Node.js / React Native / HTML / CSS / Chart.js / Typescript
 - Django / Flask 
 - Data Science / Big Data / ETL / Data Visualization / Data Engineering / Data Integration / Data Modeling / Data Mining / Data Quality / Data Manipulation 
 - SQL / PySpark / Power BI / MongoDB /Oracle
+- Blockchain
 - Restful API
 - Ethereum / Defi  
 - Mathematics / statistics
