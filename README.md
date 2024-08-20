@@ -11,10 +11,10 @@ organization's data-driven insights.
 <p style = "margin-left: 30px">
  
 - Python / R / Matlab / C / C++ / JavaScript
-- Machine Learning / Deep Learning 
-- Computer Vision / Natural Language Processing / Pattern Recognition 
+- Machine Learning / Deep Learning / Computer Vision / Natural Language Processing / Pattern Recognition 
 - PyTorch / Tensorflow / Keras / OpenCV
-- RAG / LLM / Langchain / Langgrpah 
+- RAG / LLM / Langchain / Langgrpah
+- terraform / Azure
 - Django / Flask 
 - Data Science / Big Data / ETL / Data Visualization / Data Engineering / Data Integration / Data Modeling / Data Mining / Data Quality / Data Manipulation 
 - SQL / MongoDB
