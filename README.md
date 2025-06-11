@@ -1,6 +1,6 @@
-## <img height="60" width="60" src="https://github.com/mastercodingbear/mastercodingbear/blob/main/img/hello.gif" /> Lead ML/MLOps Engineer
+## <img height="60" width="60" src="https://github.com/mastercodingbear/mastercodingbear/blob/main/img/hello.gif" /> ML Engineer
 
-The ML/MLOps Engineer bridges ML development and operational deployment, leveraging
+The ML Engineer bridges ML development and operational deployment, leveraging
 expertise in algorithms and MLOps practices. Responsibilities include model development,
 pipeline setup, performance monitoring, workflow optimization, and collaboration for
 innovation. Seamless integration of ML solutions into scalable systems enhances the
