@@ -10,18 +10,19 @@ organization's data-driven insights.
 
 <p style = "margin-left: 30px">
  
-- Python / R / Matlab / C / C++ / JavaScript
+- Python / R / Matlab / C / C++ / Node.js / React.js / JavaScript
 - Machine Learning / Deep Learning / Computer Vision / Natural Language Processing / Pattern Recognition 
 - PyTorch / Tensorflow / Keras / OpenCV
+- Deepfake Detection / Athlete Action Detection (MeidiaPipe) / MTG Card Detection
 - RAG / LLM / Langchain / Langgrpah
 - terraform / Azure
 - Django / Flask 
 - Data Science / Big Data / ETL / Data Visualization / Data Engineering / Data Integration / Data Modeling / Data Mining / Data Quality / Data Manipulation 
 - SQL / MongoDB
-- Azure
+- Cloudflare R2
 - Blockchain Ecosystem (Airdrop Strategies, White trading, Sybil Analysis)
 - Mathematics / Statistics
-- ServiceNow
+- Trading Strategies
 
 </p>
 
