@@ -1,12 +1,16 @@
 ## Senior Software Engineer
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=stevewoz1234567890&show_icons=true&theme=transparent&hide_border=true&hide_title=false" alt="GitHub stats for stevewoz1234567890" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=stevewoz1234567890&layout=compact&theme=transparent&hide_border=true&hide_title=false" alt="Top languages on GitHub" />
+  <img width="100%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=stevewoz1234567890&theme=github" alt="GitHub profile summary" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.demolab.com/?user=stevewoz1234567890&theme=transparent&hide_border=true" alt="GitHub contribution streak" />
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=stevewoz1234567890&theme=github" alt="GitHub statistics" />
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=stevewoz1234567890&theme=github" alt="Repositories per language" />
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com/?user=stevewoz1234567890&theme=github&hide_border=false" alt="GitHub contribution streak" />
 </p>
 
 Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
