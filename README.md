@@ -13,7 +13,73 @@
   <img src="https://streak-stats.demolab.com/?user=stevewoz1234567890&theme=github&hide_border=false" alt="GitHub contribution streak" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/stevewoz1234567890?tab=followers"><img src="https://img.shields.io/github/followers/stevewoz1234567890?label=Followers&logo=github&style=flat&color=blue" alt="GitHub followers" /></a>
+  <img src="https://img.shields.io/badge/Joined%20GitHub-Jul%202021-181717?style=flat&logo=github" alt="Joined GitHub July 2021" />
+  <img src="https://img.shields.io/badge/Tenure-~5%20years-181717?style=flat&logo=github" alt="About five years on GitHub" />
+  <img src="https://img.shields.io/badge/Owned%20repos-137%20(55%20public%20%7C%2082%20private)-181717?style=flat&logo=github" alt="137 owned repositories" />
+</p>
+
 Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
+
+**GitHub:** member since **17 July 2021** (~**5 years** on the platform). The cards above use **public** GitHub data only. The section below aggregates **all owned repositories (public + private)** — repo counts, **per-year contributions**, **languages by bytes**, and related metrics from the GitHub API.
+
+---
+
+## GitHub statistics (public + private)
+
+*REST + GraphQL against **all** repositories you own (including **private**). Language totals sum `languages` bytes per repo (`.ipynb` → Jupyter Notebook). **Last updated:** April 2026.*
+
+### Account snapshot
+
+| Metric | Value |
+| --- | --- |
+| **Joined** | 17 July 2021 (~4.8 calendar years; **~5 years** rounded) |
+| **Owned repositories** | **137** total — **55** public · **82** private |
+| **Followers · Following** | **217** · **106** |
+| **Stars received** (owned repos) | **22** |
+| **Pull requests · Issues** (opened, account lifetime) | **63** · **94** |
+| **Repositories contributed to** (outside owned) | **2** |
+| **Approx. codebase size** (sum of language bytes) | **~728 MB** |
+
+### Contributions by calendar year
+
+*Calendar = GitHub contribution graph total for 1 Jan–31 Dec (UTC window from the API). **2026** is year-to-date. Commit/PR sub-totals come from GitHub’s contribution breakdown for the same period.*
+
+| Year | Calendar contributions | Commits | PRs |
+| --- | ---: | ---: | ---: |
+| 2021 | 75 | 20 | 5 |
+| 2022 | 0 | 0 | 0 |
+| 2023 | 0 | 0 | 0 |
+| 2024 | 208 | 38 | 1 |
+| 2025 | 1,997 | 11 | 0 |
+| 2026 (YTD) | 89 | 14 | 0 |
+
+\*Where calendar totals are **0**, GitHub reported no contribution-graph activity for that year in this query (private activity is included when available to your account).
+
+### Languages by code volume (all owned repos)
+
+*Top languages by share of total bytes across **all 137** owned repositories (including private).*
+
+| Language | Share | Approx. |
+| --- | ---: | --- |
+| Jupyter Notebook | 59.5% | ~454 MB |
+| JavaScript | 10.0% | ~73 MB |
+| TypeScript | 6.2% | ~45 MB |
+| HTML | 4.9% | ~35 MB |
+| CSS | 4.2% | ~30 MB |
+| PHP | 3.5% | ~26 MB |
+| Rust | 3.5% | ~25 MB |
+| Java | 2.2% | ~16 MB |
+| Blade | 1.6% | ~12 MB |
+| Python | 1.5% | ~11 MB |
+| Move | 0.9% | ~6 MB |
+| Go | 0.6% | ~4 MB |
+| Swift | 0.4% | ~3 MB |
+| C | 0.3% | ~2 MB |
+| Vue | 0.2% | ~2 MB |
+| Solidity | 0.2% | ~2 MB |
+| *Other (25+ languages)* | 0.7% | ~5 MB |
 
 ---
 
@@ -48,9 +114,9 @@ The following reflects languages, frameworks, and platforms used across **public
 
 **Public profile:** [github.com/stevewoz1234567890](https://github.com/stevewoz1234567890)
 
-**Public repositories** (56) are listed below with a **description on every row**. Where GitHub had no repository description, a concise one-line summary was added for clarity.
+**Public repositories** — **56** rows below (linked); the **account snapshot** above shows **55** public repos on GitHub (refresh the table if those drift). Each row has a **description** (GitHub text or a short summary).
 
-**Private repositories** (78) use the **same columns** as public repos; **repository names are plain text** (no links). The repo **Personal-Info** is omitted by choice. Where GitHub had no description, a concise one-line summary was added.
+**Private repositories** — **78** rows below (plain names, no links). The account has **82** private repos; **Personal-Info**, **git-work**, **obsidian**, and **upwork** are omitted from this README. Same description rules as public.
 
 ---
 
