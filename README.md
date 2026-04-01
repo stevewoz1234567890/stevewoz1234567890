@@ -1,5 +1,14 @@
 ## Senior Software Engineer
 
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=stevewoz1234567890&show_icons=true&theme=transparent&hide_border=true&hide_title=false" alt="GitHub stats for stevewoz1234567890" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=stevewoz1234567890&layout=compact&theme=transparent&hide_border=true&hide_title=false" alt="Top languages on GitHub" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.demolab.com/?user=stevewoz1234567890&theme=transparent&hide_border=true" alt="GitHub contribution streak" />
+</p>
+
 Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
 
 ---
@@ -37,7 +46,7 @@ The following reflects languages, frameworks, and platforms used across **public
 
 **Public repositories** (56) are listed below with a **description on every row**. Where GitHub had no repository description, a concise one-line summary was added for clarity.
 
-**Private repositories** (81) use the **same columns** as public repos; **repository names are plain text** (no links). The repo **Personal-Info** is omitted by choice. Where GitHub had no description, a concise one-line summary was added.
+**Private repositories** (78) use the **same columns** as public repos; **repository names are plain text** (no links). The repo **Personal-Info** is omitted by choice. Where GitHub had no description, a concise one-line summary was added.
 
 ---
 
@@ -132,7 +141,6 @@ The following reflects languages, frameworks, and platforms used across **public
 | drupal-old-7 | Private | Legacy Drupal 7 site or modules. |
 | Dune | Private | Dune-related project or data tooling. |
 | education-app | Private | Educational application. |
-| git-work | Private | Git workflows or automation. |
 | gomanage-sleet | Private | Go service or management tooling. |
 | go-services | Private | Go microservices or backend services. |
 | hackerrank-problem-solving | Private | HackerRank practice solutions. |
@@ -153,7 +161,6 @@ The following reflects languages, frameworks, and platforms used across **public
 | Nonce-Analysis-for-ASIC | Private | Nonce analysis for ASIC mining. |
 | nowtrade | Private | Trading platform or automation. |
 | OBL | Private | Internal project (OBL). |
-| obsidian | Private | Obsidian vault or plugins. |
 | Order-validation-shopify-app | Private | Shopify app for order validation. |
 | paypal | Private | PayPal integration or payment tooling. |
 | pmx | Private | PMX project or token-related tooling. |
@@ -185,7 +192,6 @@ The following reflects languages, frameworks, and platforms used across **public
 | transformice-bot | Private | Transformice game bot automation. |
 | typed-apis | Private | Typed API clients or OpenAPI tooling. |
 | upbot | Private | Uptime or upgrade bot. |
-| upwork | Private | Upwork-related tooling or automation. |
 | venonewsaggregation | Private | News aggregation service. |
 | web-scraping | Private | Web scraping utilities. |
 | Wine-Recommendation | Private | Wine recommendation engine. |
