@@ -1,6 +1,6 @@
-## Lead ML Engineer
+## Senior Software Engineer
 
-Lead ML engineer focused on **production machine learning**, **MLOps**, and **applied research**. Work spans end-to-end model development, deployment and monitoring, data pipelines, and collaboration with product and platform teams to ship reliable, scalable ML systems.
+Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
 
 ---
 
@@ -24,7 +24,7 @@ The following reflects languages, frameworks, and platforms used across **public
 
 ### More about me
 
-- **Focus:** shipping ML in production and improving pipelines, evaluation, and observability  
+- **Focus:** shipping production software and ML systems; improving pipelines, evaluation, and observability  
 - **Collaboration:** open to selective collaboration on ventures with a clear technical or product scope  
 - **Learning:** reinforcement learning and agentic systems  
 - **Outside work:** football (Premier League, La Liga), music  
@@ -37,7 +37,7 @@ The following reflects languages, frameworks, and platforms used across **public
 
 **Public repositories** (56) are listed below with a **description on every row**. Where GitHub had no repository description, a concise one-line summary was added for clarity.
 
-**Private repositories** are listed in a **separate table with no URLs** and without personal identifiers (names only where you add them). Automated tools cannot read private repos without authentication; fill that table from `gh repo list` (after `gh auth login`) or by editing this file locally.
+**Private repositories** (81) use the **same columns** as public repos; **repository names are plain text** (no links). The repo **Personal-Info** is omitted by choice. Where GitHub had no description, a concise one-line summary was added.
 
 ---
 
@@ -102,16 +102,92 @@ The following reflects languages, frameworks, and platforms used across **public
 | [wishlist](https://github.com/stevewoz1234567890/wishlist) | Public | Wish List Now platform application. |
 | [x-algorithm](https://github.com/stevewoz1234567890/x-algorithm) | Public | Algorithm powering the For You feed on X. |
 
-*Last synced from the public GitHub API: 2026-04-01.*
+*Last synced from the GitHub API: 2026-04-01.*
 
 ---
 
-### Private repositories (no links; no personal data)
+### Private repositories (same format as public; no links)
 
-Private repositories **cannot be listed by automated tools without authentication**. Add rows here manually: **repository name** and a **short professional summary** only. Do **not** add URLs, internal hostnames, credentials, or personal identifiers.
-
-| Repository name | Summary |
-| --- | --- |
-| *(add private repo name)* | *(one-line description; omit personal or confidential details)* |
-
-**How to populate:** on your machine, run `gh auth login` then `gh repo list --limit 200 --json name,isPrivate,description` and copy only private entries into the table above (name + description, no links).
+| Repository | Visibility | Description |
+| --- | --- | --- |
+| act-crewsite | Private | Crew-facing site or internal tooling. |
+| act-manager | Private | Management app or admin tooling. |
+| Advanced-Use-of-CLIP-for-Scene-Context-Understanding | Private | CLIP-based scene and context understanding experiments. |
+| AI-Emailer-Neptie | Private | AI-assisted email workflows (Neptie). |
+| AI-Enhanced-Video-Streaming-and-Recommendation-System | Private | Video streaming with ML-driven recommendations. |
+| ArbiBot | Private | Arbitrage or trading automation bot. |
+| Art-NFT-Mint | Private | NFT minting for artwork. |
+| Automatic-category-identification-and-filter-mapping-for-Products | Private | Product categorization and filter mapping. |
+| bookmaker | Private | Bookmaking or odds-related tooling. |
+| clairvoyance | Private | Experimental or analytics project. |
+| CleanAir | Private | Air quality or environmental data project. |
+| CxxTurboModulesGuide | Private | Guides or samples for C++ TurboModules. |
+| dacbond | Private | Bonding or DeFi-related tooling. |
+| dashboardnoetika_2_99B | Private | Dashboard application (Noetika). |
+| Decentralized-Voting-System | Private | On-chain or decentralized voting prototype. |
+| deepfake-detector | Private | Deepfake detection models or pipelines. |
+| developer-roadmap-master | Private | Developer roadmap content or tooling. |
+| distributed-server-python | Private | Distributed server patterns in Python. |
+| Document-Image-Classification---Multiclass-classifier | Private | Document image classification (multiclass). |
+| drupal-old-7 | Private | Legacy Drupal 7 site or modules. |
+| Dune | Private | Dune-related project or data tooling. |
+| education-app | Private | Educational application. |
+| git-work | Private | Git workflows or automation. |
+| gomanage-sleet | Private | Go service or management tooling. |
+| go-services | Private | Go microservices or backend services. |
+| hackerrank-problem-solving | Private | HackerRank practice solutions. |
+| healerbuddy | Private | Health or wellness companion app. |
+| IamFuture-Dex-Contract | Private | DEX smart contracts (IamFuture). |
+| IamFuture-Dex-Frontend | Private | DEX frontend (IamFuture). |
+| IamFuture-Dex-SDK | Private | SDK for DEX integration (IamFuture). |
+| inventory-mobile-app | Private | Mobile inventory management. |
+| juzam | Private | Project or library (Juzam). |
+| laravel-simpleJobber | Private | Laravel app inspired by jobber-style scheduling. |
+| Matchfuns | Private | Matching or fun-game logic. |
+| math-puzzle | Private | Math puzzle games or solvers. |
+| MET-CS | Private | MET coursework or CS projects. |
+| minecraft-blog-site | Private | Blog or site related to Minecraft. |
+| Music-NFT-marketPlace | Private | Music NFT marketplace backend or contracts. |
+| Music-NFT-marketPlace-Frontend | Private | Music NFT marketplace frontend. |
+| My-trading | Private | Personal trading strategies or tools. |
+| Nonce-Analysis-for-ASIC | Private | Nonce analysis for ASIC mining. |
+| nowtrade | Private | Trading platform or automation. |
+| OBL | Private | Internal project (OBL). |
+| obsidian | Private | Obsidian vault or plugins. |
+| Order-validation-shopify-app | Private | Shopify app for order validation. |
+| paypal | Private | PayPal integration or payment tooling. |
+| pmx | Private | PMX project or token-related tooling. |
+| pmx-io | Private | PMX web or API services. |
+| Polymarket-Sports-Trading-Data-Extraction- | Private | Sports trading data extraction from Polymarket. |
+| poppyBETACAMP | Private | Beta camp or hackathon project (Poppy). |
+| presale_PMX | Private | Token presale or launch tooling (PMX). |
+| pricing | Private | Pricing engines or calculators. |
+| prisma | Private | Prisma ORM and backend. |
+| prisma-ui | Private | UI layer for Prisma-backed apps. |
+| ps5 | Private | PlayStation 5 related project or scripts. |
+| purplemana-FE-react | Private | React frontend (Purple Mana). |
+| purplemana-image-tools | Private | Image processing tools (Purple Mana). |
+| purplemana-mobileapp | Private | Mobile app (Purple Mana). |
+| purplemana-scanner-using-electron | Private | Electron-based scanner (Purple Mana). |
+| real-estate-scrapping-node | Private | Real estate data scraping in Node.js. |
+| retrogamingmarket | Private | Retro gaming marketplace. |
+| Robo-Book | Private | Automated book or trading journal. |
+| satellite-model | Private | Satellite imagery or ML models. |
+| sla-pm | Private | SLA tracking or project management. |
+| speedy-pit-stop | Private | Pit stop or scheduling tooling. |
+| sport-combination-generator | Private | Sports combinatorics or parlay generator. |
+| taptool | Private | Tap or interaction tooling. |
+| tcgplayer_bot | Private | TCGPlayer automation or bot. |
+| tg-web-bot | Private | Telegram web bot. |
+| TG-website | Private | Website for TG project. |
+| THG_Exercise_Fullstack | Private | Full-stack exercise or course project. |
+| tradingview-indicator | Private | TradingView Pine or custom indicators. |
+| transformice-bot | Private | Transformice game bot automation. |
+| typed-apis | Private | Typed API clients or OpenAPI tooling. |
+| upbot | Private | Uptime or upgrade bot. |
+| upwork | Private | Upwork-related tooling or automation. |
+| venonewsaggregation | Private | News aggregation service. |
+| web-scraping | Private | Web scraping utilities. |
+| Wine-Recommendation | Private | Wine recommendation engine. |
+| WineZap | Private | Wine app or marketplace (WineZap). |
+| X-Minter_Bot | Private | Scan X and mint meme on Pumpfun |
