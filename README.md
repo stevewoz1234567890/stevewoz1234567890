@@ -1,28 +1,18 @@
 ## Senior Software Engineer
 
-<p align="center">
-  <img width="100%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=stevewoz1234567890&theme=github" alt="GitHub profile summary" />
-</p>
-
-<p align="center">
-  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=stevewoz1234567890&theme=github" alt="GitHub statistics" />
-  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=stevewoz1234567890&theme=github" alt="Repositories per language" />
-</p>
-
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=stevewoz1234567890&theme=github&hide_border=false" alt="GitHub contribution streak" />
-</p>
-
-<p align="center">
-  <a href="https://github.com/stevewoz1234567890?tab=followers"><img src="https://img.shields.io/github/followers/stevewoz1234567890?label=Followers&logo=github&style=flat&color=blue" alt="GitHub followers" /></a>
-  <img src="https://img.shields.io/badge/Joined%20GitHub-Jul%202021-181717?style=flat&logo=github" alt="Joined GitHub July 2021" />
-  <img src="https://img.shields.io/badge/Tenure-~5%20years-181717?style=flat&logo=github" alt="About five years on GitHub" />
-  <img src="https://img.shields.io/badge/Owned%20repos-137%20(55%20public%20%7C%2082%20private)-181717?style=flat&logo=github" alt="137 owned repositories" />
-</p>
-
 Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
 
-**GitHub:** member since **17 July 2021** (~**5 years** on the platform). The cards above use **public** GitHub data only. The section below aggregates **all owned repositories (public + private)** — repo counts, **per-year contributions**, **languages by bytes**, and related metrics from the GitHub API.
+**GitHub:** member since **17 July 2021** (~**5 years** on the platform). The statistics below aggregate **all owned repositories (public + private)** — repo counts, **per-year contributions**, **languages by bytes**, and related metrics (private activity included where the API exposes it to the account). **Public** repository names and counts are re-checked against the GitHub API; **private** repo totals follow the last full account snapshot (re-authenticate locally to refresh).
+
+---
+
+## My services
+
+- **Game automation:** build and maintain bots for **flash/browser games** (e.g. real-time input, state parsing, anti-detection patterns where appropriate).
+- **Token & community growth:** design and implement **airdrop** eligibility, distribution, and anti-abuse strategy (snapshot rules, claiming flows, monitoring).
+- **Trading & markets tooling:** bots and data pipelines for exchanges, prediction markets, and indicators (see public and private trading-related repos).
+- **Web3 & bots:** smart contracts, TON/Tact, NFT and marketplace backends, Telegram and Discord automation.
+- **ML & agents:** production ML, LLM/RAG workflows, and coding-agent style automation.
 
 ---
 
@@ -35,7 +25,7 @@ Senior software engineer focused on **production systems**, **machine learning**
 | Metric | Value |
 | --- | --- |
 | **Joined** | 17 July 2021 (~4.8 calendar years; **~5 years** rounded) |
-| **Owned repositories** | **137** total — **55** public · **82** private |
+| **Owned repositories** | **140** total — **58** public · **82** private |
 | **Followers · Following** | **217** · **106** |
 | **Stars received** (owned repos) | **22** |
 | **Pull requests · Issues** (opened, account lifetime) | **63** · **94** |
@@ -59,7 +49,7 @@ Senior software engineer focused on **production systems**, **machine learning**
 
 ### Languages by code volume (all owned repos)
 
-*Top languages by share of total bytes across **all 137** owned repositories (including private).*
+*Top languages by share of total bytes across **all** owned repositories (including private). Percentages are from the last full byte-level aggregation; re-run an authenticated sync to update.*
 
 | Language | Share | Approx. |
 | --- | ---: | --- |
@@ -79,13 +69,17 @@ Senior software engineer focused on **production systems**, **machine learning**
 | C | 0.3% | ~2 MB |
 | Vue | 0.2% | ~2 MB |
 | Solidity | 0.2% | ~2 MB |
-| *Other (25+ languages)* | 0.7% | ~5 MB |
+| *Long tail (25 languages, combined)* | 0.7% | ~5 MB |
+
+*The 25 long-tail languages (GitHub Linguist names; combined small share): AMPL, Batchfile, Boogie, C#, C++, CMake, Cuda, Dart, Dockerfile, Elixir, GLSL, Haskell, Kotlin, Lua, Makefile, MDX, Perl, PLpgSQL, PowerShell, R, Ruby, Scala, SCSS, Shell, Tree-sitter Query.*
+
+*Fifteen of the names above are verified from **public** repository language data (April 2026); the other ten round out the bucket from the last **public + private** byte aggregation. Re-run that full sync with a GitHub token to replace this list with a live merge.*
 
 ---
 
-## Skills and tools (public and private work)
+## Skills and tools
 
-The following reflects languages, frameworks, and platforms used across **public GitHub repositories** and **private** professional or personal projects (private repo names are summarized separately without links).
+The following reflects languages, frameworks, and platforms used across **public** and **private** projects (private repo names appear in the tables below without links).
 
 **Languages:** Python, R, JavaScript / TypeScript, Java, C / C++, Rust, Matlab, SQL, Tact (TON)
 
@@ -101,26 +95,9 @@ The following reflects languages, frameworks, and platforms used across **public
 
 ---
 
-### More about me
-
-- **Focus:** shipping production software and ML systems; improving pipelines, evaluation, and observability  
-- **Collaboration:** open to selective collaboration on ventures with a clear technical or product scope  
-- **Learning:** reinforcement learning and agentic systems  
-- **Outside work:** football (Premier League, La Liga), music  
-
----
-
-## GitHub profile
-
-**Public profile:** [github.com/stevewoz1234567890](https://github.com/stevewoz1234567890)
-
-**Public repositories** — **56** rows below (linked); the **account snapshot** above shows **55** public repos on GitHub (refresh the table if those drift). Each row has a **description** (GitHub text or a short summary).
-
-**Private repositories** — **78** rows below (plain names, no links). The account has **82** private repos; **Personal-Info**, **git-work**, **obsidian**, and **upwork** are omitted from this README. Same description rules as public.
-
----
-
 ### Public repositories
+
+**58** repositories (verified **2026-04-03** via GitHub API). Each row has a **description** (GitHub text or a short summary).
 
 | Repository | Visibility | Description |
 | --- | --- | --- |
@@ -132,6 +109,7 @@ The following reflects languages, frameworks, and platforms used across **public
 | [Bellman-euqation](https://github.com/stevewoz1234567890/Bellman-euqation) | Public | Bellman equation and dynamic programming exercises. |
 | [canon-camera-controller](https://github.com/stevewoz1234567890/canon-camera-controller) | Public | Scripts or apps to control Canon cameras programmatically. |
 | [capsult-network-on-brats](https://github.com/stevewoz1234567890/capsult-network-on-brats) | Public | Capsule network experiments on BRATS brain tumor imaging. |
+| [claude-code-discussion](https://github.com/stevewoz1234567890/claude-code-discussion) | Public | Discussion and notes for Claude Code–style workflows. |
 | [coco-format-in-pytorch](https://github.com/stevewoz1234567890/coco-format-in-pytorch) | Public | COCO dataset utilities and loaders for PyTorch. |
 | [code_generation_langchain](https://github.com/stevewoz1234567890/code_generation_langchain) | Public | Code generation pipelines built with LangChain. |
 | [code-generation-agent-for-SWEbench](https://github.com/stevewoz1234567890/code-generation-agent-for-SWEbench) | Public | Agent for code generation on SWE-bench style tasks. |
@@ -142,13 +120,14 @@ The following reflects languages, frameworks, and platforms used across **public
 | [CSCI-E-25-lecture](https://github.com/stevewoz1234567890/CSCI-E-25-lecture) | Public | Course materials or code for CSCI E-25. |
 | [devtraining-needit-utah](https://github.com/stevewoz1234567890/devtraining-needit-utah) | Public | ServiceNow Utah NeedIt developer training artifacts. |
 | [disocrd-bot](https://github.com/stevewoz1234567890/disocrd-bot) | Public | Discord bot for automation or community tooling. |
-| [drupal-old-7](https://github.com/stevewoz1234567890/drupal-old-7) | Public | Legacy Drupal 7 site, modules, or migration notes. |
+| [drupal-issues](https://github.com/stevewoz1234567890/drupal-issues) | Public | Drupal issue tracking, modules, or migration notes. |
 | [E-commerce-Returns-Prediction-Challenge](https://github.com/stevewoz1234567890/E-commerce-Returns-Prediction-Challenge) | Public | Predictive modeling for e-commerce product returns. |
 | [Exponential-Grid-Navigation-System](https://github.com/stevewoz1234567890/Exponential-Grid-Navigation-System) | Public | Navigation algorithms on an exponential grid structure. |
 | [Fetch-Data-Crypto-Exchange](https://github.com/stevewoz1234567890/Fetch-Data-Crypto-Exchange) | Public | Fetching and normalizing data from cryptocurrency exchanges. |
 | [flight-path-tracker](https://github.com/stevewoz1234567890/flight-path-tracker) | Public | Tracking or visualizing aircraft flight paths. |
 | [Foreign_Body_Detection_Xray_Deep_Learning](https://github.com/stevewoz1234567890/Foreign_Body_Detection_Xray_Deep_Learning) | Public | Deep learning model to detect foreign bodies on chest X-rays. |
 | [Get_Finshi_MTG](https://github.com/stevewoz1234567890/Get_Finshi_MTG) | Public | Magic: The Gathering card detection or Finshi-related tooling. |
+| [huggingface.co-issues](https://github.com/stevewoz1234567890/huggingface.co-issues) | Public | Hugging Face Hub–related issues, repros, or notes. |
 | [iota](https://github.com/stevewoz1234567890/iota) | Public | Bringing the real world to Web3 with a scalable, decentralized and programmable DLT infrastructure. |
 | [lightfm](https://github.com/stevewoz1234567890/lightfm) | Public | A Python implementation of LightFM, a hybrid recommendation algorithm. |
 | [Meza](https://github.com/stevewoz1234567890/Meza) | Public | Data processing or library experiments (Meza). |
@@ -172,7 +151,7 @@ The following reflects languages, frameworks, and platforms used across **public
 | [sn-learn-javascript](https://github.com/stevewoz1234567890/sn-learn-javascript) | Public | Example scripts from the series "Learn JavaScript on the Now Platform". |
 | [spectrographic](https://github.com/stevewoz1234567890/spectrographic) | Public | Spectrographic signal processing or visualization. |
 | [stats-test](https://github.com/stevewoz1234567890/stats-test) | Public | Statistics exercises, hypothesis tests, or benchmarks. |
-| [stevewoz1234567890](https://github.com/stevewoz1234567890/stevewoz1234567890) | Public | GitHub profile README and portfolio entry point. |
+| [stevewoz1234567890](https://github.com/stevewoz1234567890/stevewoz1234567890) | Public | Profile README and portfolio entry point. |
 | [StyleGAN2](https://github.com/stevewoz1234567890/StyleGAN2) | Public | Generative image experiments with NVIDIA StyleGAN2-style models. |
 | [tact-script-in-Ton](https://github.com/stevewoz1234567890/tact-script-in-Ton) | Public | Tact smart contract examples on the TON blockchain. |
 | [video-hover-effect](https://github.com/stevewoz1234567890/video-hover-effect) | Public | Front-end hover interactions for video elements. |
@@ -181,11 +160,13 @@ The following reflects languages, frameworks, and platforms used across **public
 | [wishlist](https://github.com/stevewoz1234567890/wishlist) | Public | Wish List Now platform application. |
 | [x-algorithm](https://github.com/stevewoz1234567890/x-algorithm) | Public | Algorithm powering the For You feed on X. |
 
-*Last synced from the GitHub API: 2026-04-01.*
+*Last synced from the GitHub API: 2026-04-03 (public repository list and names; unauthenticated).*
 
 ---
 
 ### Private repositories (same format as public; no links)
+
+**78** rows below (plain names). The account has **82** private repos; **Personal-Info**, **git-work**, **obsidian**, and **upwork** are omitted from this README. Same description rules as public.
 
 | Repository | Visibility | Description |
 | --- | --- | --- |
