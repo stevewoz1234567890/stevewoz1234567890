@@ -164,9 +164,7 @@ The following reflects languages, frameworks, and platforms used across **public
 
 ---
 
-### Private repositories (same format as public; no links)
-
-**78** rows below (plain names). The account has **82** private repos; **Personal-Info**, **git-work**, **obsidian**, and **upwork** are omitted from this README. Same description rules as public.
+**78** private repository rows below (plain names, no links). The account has **82** private repos; **Personal-Info**, **git-work**, **obsidian**, and **upwork** are omitted from this README. Same description rules as public.
 
 | Repository | Visibility | Description |
 | --- | --- | --- |
