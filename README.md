@@ -2,7 +2,10 @@
 
 Senior software engineer focused on **production systems**, **machine learning**, **MLOps**, and **applied research**. Work spans end-to-end development, model deployment, data pipelines, and collaboration with product and platform teams to ship reliable, scalable software and ML systems.
 
-**GitHub:** member since **17 July 2021** (~**5 years** on the platform). The statistics below are based on **public** repositories only (names, counts, and language bytes from the GitHub API). Contribution history reflects your account's activity on GitHub.
+<!-- github-stats:auto:start member-line -->
+**GitHub:** member since **17 July 2021** (~**5 years** on the platform).
+<!-- github-stats:auto:end member-line -->
+The statistics below are based on **public** repositories only (names, counts, and language bytes from the GitHub API). Contribution history reflects your account's activity on GitHub.
 
 ---
 
@@ -18,6 +21,7 @@ Senior software engineer focused on **production systems**, **machine learning**
 
 ## GitHub statistics
 
+<!-- github-stats:auto:start core-stats -->
 *Language totals sum the `languages` API bytes per public repo (`.ipynb` → Jupyter Notebook). **Last updated:** April 2026.*
 
 ### Account snapshot
@@ -70,6 +74,23 @@ Senior software engineer focused on **production systems**, **machine learning**
 
 *Long tail: AMPL, Boogie, C#, C++, Cuda, Dockerfile, Go, Java, MDX, Makefile, PHP, PLpgSQL, Ruby, SCSS, Tree-sitter Query.*
 
+### Language mix (visualization)
+
+```mermaid
+pie title Public repository language share (by bytes)
+  "Jupyter Notebook" : 55.5
+  "Rust" : 17.3
+  "TypeScript" : 15.5
+  "Move" : 4.3
+  "Swift" : 1.9
+  "Python" : 1.7
+  "C" : 1.5
+  "HTML" : 1.3
+  "Other" : 3.3
+```
+
+<!-- github-stats:auto:end core-stats -->
+
 ---
 
 ## Skills and tools
@@ -92,6 +113,7 @@ The following reflects languages, frameworks, and platforms used in **public** r
 
 ### Repositories
 
+<!-- github-stats:auto:start repos -->
 **60** public repositories (verified **2026-04-03** against the GitHub API; descriptions use the repo's GitHub field when set, otherwise a short summary).
 
 | Repository | Description |
@@ -158,3 +180,4 @@ The following reflects languages, frameworks, and platforms used in **public** r
 | [x-algorithm](https://github.com/stevewoz1234567890/x-algorithm) | Algorithm powering the For You feed on X. |
 
 *Last synced from the GitHub API: 2026-04-03 — public repository list, descriptions, and per-repo language bytes (unauthenticated; rate limits may delay refreshes).*
+<!-- github-stats:auto:end repos -->
