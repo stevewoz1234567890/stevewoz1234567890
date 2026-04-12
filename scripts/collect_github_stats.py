@@ -66,6 +66,17 @@ class CollectedStats:
     repos: list[dict[str, Any]] = field(default_factory=list)
 
 
+def _github_headers(token: str | None, accept: str = "application/vnd.github+json") -> dict[str, str]:
+    headers: dict[str, str] = {
+        "Accept": accept,
+        "User-Agent": USER_AGENT,
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
 def _request(
     url: str,
     *,
@@ -74,13 +85,7 @@ def _request(
     token: str | None = None,
     accept: str = "application/vnd.github+json",
 ) -> tuple[int, dict[str, str], bytes]:
-    headers = {
-        "Accept": accept,
-        "User-Agent": USER_AGENT,
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    headers = _github_headers(token, accept=accept)
     req = urllib.request.Request(url, data=data, headers=headers, method=method)
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
@@ -93,17 +98,46 @@ def _request(
         raise RuntimeError(f"HTTP {e.code} for {url}: {body[:500]!r}") from e
 
 
-def _json_get(url: str, token: str | None) -> Any:
-    status, headers, body = _request(url, token=token)
-    if status != 200:
-        raise RuntimeError(f"Unexpected status {status} for {url}")
-    remaining = headers.get("x-ratelimit-remaining")
-    if remaining is not None and int(remaining) < 5:
+def _rest_get(url: str, token: str | None) -> tuple[int, dict[str, str], bytes]:
+    """GET returning status even on HTTP errors (for rate-limit retries)."""
+    req = urllib.request.Request(url, headers=_github_headers(token), method="GET")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            rh = {k.lower(): v for k, v in resp.headers.items()}
+            return resp.status, rh, resp.read()
+    except urllib.error.HTTPError as e:
+        rh = {k.lower(): v for k, v in e.headers.items()} if e.headers else {}
+        return e.code, rh, e.read()
+
+
+def _sleep_for_rate_limit(headers: dict[str, str], *, cap_s: int) -> None:
+    ra = headers.get("retry-after")
+    if ra and ra.isdigit():
+        sleep_s = min(int(ra), cap_s)
+    else:
         reset = int(headers.get("x-ratelimit-reset", "0"))
         sleep_s = max(0, reset - int(time.time())) + 1
-        if sleep_s > 0 and sleep_s < 4000:
-            time.sleep(sleep_s)
-    return json.loads(body.decode("utf-8"))
+        sleep_s = min(sleep_s, cap_s)
+    if sleep_s > 0:
+        print(f"github API: waiting {sleep_s}s (rate limit)...", file=sys.stderr)
+        time.sleep(sleep_s)
+
+
+def _json_get(url: str, token: str | None) -> Any:
+    cap = 120 if not token else 60
+    max_attempts = 40
+    for attempt in range(max_attempts):
+        status, headers, body = _rest_get(url, token)
+        if status == 200:
+            remaining = headers.get("x-ratelimit-remaining")
+            if remaining is not None and int(remaining) < 3:
+                _sleep_for_rate_limit(headers, cap_s=cap)
+            return json.loads(body.decode("utf-8"))
+        if status in (403, 429) and attempt + 1 < max_attempts:
+            _sleep_for_rate_limit(headers, cap_s=cap)
+            continue
+        raise RuntimeError(f"Unexpected status {status} for {url}: {body[:500]!r}")
+    raise RuntimeError(f"Exceeded retries for {url}")
 
 
 def _graphql(query: str, variables: dict[str, Any], token: str) -> dict[str, Any]:
