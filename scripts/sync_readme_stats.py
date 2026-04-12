@@ -5,6 +5,10 @@ Collect GitHub statistics and patch README.md in one step.
 Usage (from repository root):
   python scripts/sync_readme_stats.py
 
+With the repo virtualenv (create once: ``python -m venv .venv``):
+  Windows: .venv\\Scripts\\python.exe scripts\\sync_readme_stats.py
+  macOS/Linux: .venv/bin/python scripts/sync_readme_stats.py
+
 Environment:
   GITHUB_LOGIN   optional override (default stevewoz1234567890)
   GITHUB_TOKEN   or GH_TOKEN — recommended (GraphQL + higher REST limits)

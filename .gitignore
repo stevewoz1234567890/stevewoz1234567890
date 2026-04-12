@@ -3,3 +3,5 @@ scripts/data/github-stats.json
 
 __pycache__/
 *.py[cod]
+
+.venv/
