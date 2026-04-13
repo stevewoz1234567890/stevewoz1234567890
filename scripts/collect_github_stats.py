@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -61,6 +62,8 @@ class CollectedStats:
     total_language_bytes: int
     approx_codebase_mb: float
     languages_by_bytes: dict[str, int] = field(default_factory=dict)
+    languages_by_primary_repo: dict[str, int] = field(default_factory=dict)
+    languages_by_repo_inclusion: dict[str, int] = field(default_factory=dict)
     yearly_contributions: list[YearContributions] = field(default_factory=list)
     graphql_note: str = ""
     repos: list[dict[str, Any]] = field(default_factory=list)
@@ -276,6 +279,101 @@ def _user_pr_issue_counts_graphql(login: str, token: str) -> tuple[int, int]:
     return prs, issues
 
 
+_WEAK_DESC_TOKENS = frozenset(
+    {
+        "python",
+        "nltk",
+        "java",
+        "rust",
+        "go",
+        "ruby",
+        "php",
+        "html",
+        "css",
+        "r",
+        "c",
+        "swift",
+        "kotlin",
+        "dart",
+        "scala",
+        "perl",
+        "lua",
+        "ts",
+        "js",
+        "notebook",
+        "jupyter",
+    }
+)
+
+
+def _is_weak_repo_description(text: str) -> bool:
+    t = (text or "").strip()
+    if not t or t in {"—", "-", "N/A", "n/a", "TODO", "todo", "TBD", "tbd"}:
+        return True
+    tl = t.lower()
+    if len(t) < 12 and tl in _WEAK_DESC_TOKENS:
+        return True
+    if " " not in t and len(t) <= 12 and tl in _WEAK_DESC_TOKENS:
+        return True
+    return False
+
+
+def _readable_repo_title(name: str) -> str:
+    """Turn a repo slug into a short title (best-effort)."""
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", name)
+    s = s.replace("_", " ").replace("-", " ")
+    words = [w for w in s.split() if w]
+    acronyms = {
+        "ai": "AI",
+        "ml": "ML",
+        "ui": "UI",
+        "api": "API",
+        "ton": "TON",
+        "sql": "SQL",
+        "mtg": "MTG",
+        "swe": "SWE",
+        "llm": "LLM",
+        "lp": "LP",
+        "ds": "DS",
+        "js": "JS",
+        "ts": "TS",
+        "gpu": "GPU",
+        "nft": "NFT",
+        "qft": "QFT",
+        "gan": "GAN",
+        "brats": "BRATS",
+        "coco": "COCO",
+        "mnist": "MNIST",
+        "gpt4o": "GPT-4o",
+        "cs": "CS",
+        "sci": "SCI",
+        "ode": "ODE",
+        "odes": "ODEs",
+        "xray": "X-ray",
+        "x": "X",
+    }
+    out: list[str] = []
+    for w in words:
+        wl = w.lower()
+        if wl in acronyms:
+            out.append(acronyms[wl])
+        elif w.isupper() and len(w) <= 5:
+            out.append(w)
+        else:
+            out.append(w[:1].upper() + w[1:] if len(w) > 1 else w.upper())
+    return " ".join(out)
+
+
+def _normalize_repo_description(name: str, raw: str | None, primary: str | None) -> str:
+    if not _is_weak_repo_description(raw or ""):
+        return (raw or "").strip()
+    title = _readable_repo_title(name)
+    lang = (primary or "").strip()
+    if lang and lang != "Other":
+        return f"{title} — public {lang} repository."
+    return f"{title} — public code repository."
+
+
 def _repos_contributed_total_count(login: str, token: str) -> int:
     query = """
     query($login: String!) {
@@ -306,7 +404,10 @@ def collect(login: str, token: str | None) -> CollectedStats:
 
     repos = _paginate_repos(login, token)
     langs: dict[str, int] = defaultdict(int)
+    primary_repo_counts: dict[str, int] = defaultdict(int)
+    inclusion_repo_counts: dict[str, int] = defaultdict(int)
     stars = 0
+    repo_rows: list[dict[str, Any]] = []
     for r in repos:
         stars += int(r.get("stargazers_count") or 0)
         owner = (r.get("owner") or {}).get("login")
@@ -317,9 +418,27 @@ def collect(login: str, token: str | None) -> CollectedStats:
         try:
             blob = _json_get(lang_url, token)
         except RuntimeError:
-            continue
+            blob = {}
         for lang, n in blob.items():
             langs[lang] += int(n)
+        for lang in blob:
+            inclusion_repo_counts[lang] += 1
+
+        primary = (r.get("language") or "").strip() or None
+        if not primary and blob:
+            primary = max(blob.items(), key=lambda kv: kv[1])[0]
+        if not primary:
+            primary = "Other"
+        primary_repo_counts[primary] += 1
+
+        desc = _normalize_repo_description(name, r.get("description"), primary)
+        repo_rows.append(
+            {
+                "name": name,
+                "html_url": r.get("html_url"),
+                "description": desc,
+            }
+        )
 
     total_bytes = sum(langs.values())
     approx_mb = round(total_bytes / (1024 * 1024), 1) if total_bytes else 0.0
@@ -355,22 +474,12 @@ def collect(login: str, token: str | None) -> CollectedStats:
         except Exception as e:
             gql_note += f"Repositories-contributed count unavailable ({e})."
             contributed = None
-    else:
-        gql_note = (
-            "Set GITHUB_TOKEN for GraphQL: yearly contribution breakdown and "
-            '"Repositories contributed to" count.'
-        )
 
-    repo_rows = []
-    for r in sorted(repos, key=lambda x: (x.get("name") or "").lower()):
-        desc = (r.get("description") or "").strip()
-        repo_rows.append(
-            {
-                "name": r.get("name"),
-                "html_url": r.get("html_url"),
-                "description": desc,
-            }
-        )
+    repo_rows.sort(key=lambda x: (x.get("name") or "").lower())
+    primary_sorted = dict(sorted(primary_repo_counts.items(), key=lambda kv: (-kv[1], kv[0])))
+    inclusion_sorted = dict(
+        sorted(inclusion_repo_counts.items(), key=lambda kv: (-kv[1], kv[0]))
+    )
 
     return CollectedStats(
         collected_at_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -391,6 +500,8 @@ def collect(login: str, token: str | None) -> CollectedStats:
         total_language_bytes=total_bytes,
         approx_codebase_mb=approx_mb,
         languages_by_bytes=dict(sorted(langs.items(), key=lambda kv: (-kv[1], kv[0]))),
+        languages_by_primary_repo=primary_sorted,
+        languages_by_repo_inclusion=inclusion_sorted,
         yearly_contributions=yearly,
         graphql_note=gql_note.strip(),
         repos=repo_rows,

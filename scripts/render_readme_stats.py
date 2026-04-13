@@ -28,13 +28,9 @@ def _fmt_int(n: int) -> str:
     return f"{n:,}"
 
 
-def _human_mb(total_bytes: int) -> str:
-    if total_bytes <= 0:
-        return "~0 MB"
-    mb = total_bytes / (1024 * 1024)
-    if mb >= 10:
-        return f"~{mb:.0f} MB"
-    return f"~{mb:.1f} MB"
+def _mermaid_slice_label(name: str) -> str:
+    """Mermaid pie labels are quoted; avoid raw double quotes."""
+    return name.replace('"', "'")
 
 
 def render_member_line(data: dict[str, Any]) -> str:
@@ -49,16 +45,16 @@ def render_core_stats(data: dict[str, Any]) -> str:
     year = now.year
     last_updated = f"{month} {year}"
 
-    langs = data["languages_by_bytes"]
-    total = int(data["total_language_bytes"])
-    contrib_note = data.get("graphql_note") or ""
+    n_repos = int(data["public_repos"])
+    inclusion = data.get("languages_by_repo_inclusion") or {}
 
     lines: list[str] = [
-        f"*Language totals sum the `languages` API bytes per public repo (`.ipynb` → Jupyter Notebook). **Last updated:** {last_updated}.*",
+        f"*Languages come from the GitHub `languages` API on each **public** repository. "
+        f"A repository can list several languages; the **table** counts how many repos include each language. "
+        f"The **pie** uses the same counts normalized so the slices sum to 100% (share of all repo–language entries). "
+        f"**Last updated:** {last_updated}.*",
         "",
     ]
-    if contrib_note:
-        lines.extend([f"*{contrib_note}*", ""])
 
     pr_src = data.get("pr_issue_counts_source") or "search"
     pr_issue_lbl = (
@@ -74,129 +70,51 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "| Metric | Value |",
             "| --- | --- |",
             f"| **Joined** | {data['joined_display']} (~{data['calendar_years_one_decimal']} calendar years; **~{data['years_on_platform_rounded']} years** rounded) |",
-            f"| **Public repositories** | **{_fmt_int(int(data['public_repos']))}** |",
+            f"| **Public repositories** | **{_fmt_int(n_repos)}** |",
             f"| **Followers · Following** | **{_fmt_int(int(data['followers']))}** · **{_fmt_int(int(data['following']))}** |",
             f"| **Stars received** | **{_fmt_int(int(data['stars_received']))}** |",
             f"| **Pull requests · Issues** {pr_issue_lbl} | **{_fmt_int(int(data['prs_opened_lifetime']))}** · **{_fmt_int(int(data['issues_opened_lifetime']))}** |",
-        ]
-    )
-
-    rc = data.get("repos_contributed_to_outside_owned")
-    if rc is None:
-        lines.append('| **Repositories contributed to** (outside owned) | *Requires `GITHUB_TOKEN` (GraphQL).* |')
-    else:
-        lines.append(f"| **Repositories contributed to** (outside owned) | **{_fmt_int(int(rc))}** |")
-
-    lines.extend(
-        [
-            f"| **Approx. codebase size** (public repos, sum of language bytes) | **{_human_mb(total)}** |",
             "",
         ]
     )
 
-    if pr_src == "search":
-        lines.extend(
-            [
-                "*PR/issue totals use the REST Search API (`author:login` with `is:pr` / `is:issue`). That index is visibility-sensitive and often **undercounts** dashboard totals when you work in private repositories. With `GITHUB_TOKEN`, this script prefers GraphQL `User` totals instead.*",
-                "",
-            ]
-        )
-
     lines.extend(
         [
-            "### Contributions by calendar year",
+            "### Languages by code volume",
             "",
-            f"*Calendar = GitHub contribution graph total for 1 Jan–31 Dec (UTC window from the API). **{now.year}** is year-to-date. Commit/PR sub-totals come from GitHub's contribution breakdown for the same period.*",
+            f"*{_fmt_int(n_repos)} public repositories; **% of repos** is repos that list the language / total repos "
+            f"(can exceed 100% in sum because one repo lists multiple languages).*",
             "",
-        ]
-    )
-
-    yearly = data.get("yearly_contributions") or []
-    if not yearly:
-        lines.extend(
-            [
-                "*Contribution table omitted — set `GITHUB_TOKEN` and re-run `collect_github_stats.py`.*",
-                "",
-            ]
-        )
-    else:
-        lines.extend(
-            [
-                "| Year | Calendar contributions | Commits | PRs |",
-                "| --- | ---: | ---: | ---: |",
-            ]
-        )
-        for y in yearly:
-            lines.append(
-                f"| {y['label']} | {_fmt_int(int(y['calendar_total']))} | "
-                f"{_fmt_int(int(y['commits']))} | {_fmt_int(int(y['prs']))} |"
-            )
-        lines.extend(
-            [
-                "",
-                "\\*Where calendar totals are **0**, GitHub reported no contribution-graph activity for that year in this query.",
-                "",
-            ]
-        )
-
-    lines.extend(
-        [
-            "### Languages by code volume (public repos)",
-            "",
-            "*Share of total bytes across **public** repositories (GitHub `languages` API).*",
-            "",
-            "| Language | Share | Approx. |",
+            "| Language | Repositories | % of repos |",
             "| --- | ---: | ---: |",
         ]
     )
 
-    if not langs or total <= 0:
-        lines.append("| *No language data* | — | — |")
+    if not inclusion or n_repos <= 0:
+        lines.extend(["| *No language data* | — | — |", ""])
     else:
-        sorted_items = sorted(langs.items(), key=lambda kv: (-kv[1], kv[0]))
-        if len(sorted_items) > 15:
-            head = sorted_items[:14]
-            tail = sorted_items[14:]
-        else:
-            head = sorted_items
-            tail = []
-
-        for name, b in head:
-            share = 100.0 * b / total
-            approx = b / (1024 * 1024)
-            approx_s = f"~{approx:.1f} MB" if approx >= 0.1 else f"~{approx * 1024:.1f} KB"
-            lines.append(f"| {name} | {share:.1f}% | {approx_s} |")
-
-        if tail:
-            tail_bytes = sum(b for _, b in tail)
-            share = 100.0 * tail_bytes / total
-            approx = tail_bytes / (1024 * 1024)
-            approx_s = f"~{approx:.1f} MB" if approx >= 0.1 else f"~{approx * 1024:.1f} KB"
-            names = ", ".join(n for n, _ in sorted(tail, key=lambda kv: kv[0].lower()))
-            lines.append(
-                f"| *Long tail ({len(tail)} languages, combined)* | {share:.1f}% | {approx_s} |"
-            )
-            lines.extend(["", f"*Long tail: {names}.*", ""])
-        else:
-            lines.append("")
+        for name, count in sorted(inclusion.items(), key=lambda kv: (-kv[1], kv[0])):
+            share = 100.0 * int(count) / n_repos
+            lines.append(f"| {name} | {_fmt_int(int(count))} | {share:.1f}% |")
+        lines.append("")
 
     lines.extend(
         [
             "### Language mix (visualization)",
             "",
             "```mermaid",
-            "pie title Public repository language share (by bytes)",
+            'pie title Repository language share',
         ]
     )
-    if langs and total > 0:
-        pie_items = sorted(langs.items(), key=lambda kv: -kv[1])[:12]
-        other = total - sum(b for _, b in pie_items)
-        for name, b in pie_items:
-            pct = 100.0 * b / total
-            lines.append(f'  "{name}" : {round(pct, 1)}')
-        if other > 0 and len(langs) > len(pie_items):
-            pct = 100.0 * other / total
-            lines.append(f'  "Other ({len(langs) - len(pie_items)} langs)" : {round(pct, 1)}')
+    if inclusion and n_repos > 0:
+        total_inc = sum(int(v) for v in inclusion.values())
+        if total_inc <= 0:
+            lines.append('  "Unknown" : 100')
+        else:
+            for name, count in sorted(inclusion.items(), key=lambda kv: (-kv[1], kv[0])):
+                pct = 100.0 * int(count) / total_inc
+                label = _mermaid_slice_label(name)
+                lines.append(f'  "{label}" : {round(pct, 1)}')
     else:
         lines.append('  "Unknown" : 100')
     lines.extend(["```", ""])
@@ -204,11 +122,68 @@ def render_core_stats(data: dict[str, Any]) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _skill_lang_label(lang: str) -> str:
+    if lang == "Jupyter Notebook":
+        return "Jupyter (notebooks)"
+    return lang
+
+
+def render_skills_languages_line(data: dict[str, Any]) -> str:
+    """Single markdown line: **Languages:** … — from all languages observed across public repos."""
+    raw_langs = list((data.get("languages_by_bytes") or {}).keys())
+    labels = [_skill_lang_label(x) for x in raw_langs]
+    bag: dict[str, str] = {}
+    for L in labels:
+        key = L.lower()
+        if key not in bag:
+            bag[key] = L
+    ordered = sorted(bag.values(), key=str.lower)
+
+    if any("tact" in (r.get("name") or "").lower() for r in data.get("repos", [])):
+        if "tact (ton)" not in {x.lower() for x in ordered}:
+            ordered.append("Tact (TON)")
+
+    def take(name: str) -> str | None:
+        for x in list(ordered):
+            if x.lower() == name.lower():
+                ordered.remove(x)
+                return x
+        return None
+
+    pieces: list[str] = []
+    js = take("JavaScript")
+    ts = take("TypeScript")
+    if js and ts:
+        pieces.append("JavaScript / TypeScript")
+    elif js:
+        pieces.append(js)
+    elif ts:
+        pieces.append(ts)
+
+    c = take("C")
+    cpp = take("C++")
+    if c and cpp:
+        pieces.append("C / C++")
+    elif c:
+        pieces.append(c)
+    elif cpp:
+        pieces.append(cpp)
+
+    pieces.extend(sorted(ordered, key=str.lower))
+
+    for extra in ("Matlab", "SQL"):
+        if not any(p.strip().lower() == extra.lower() for p in pieces):
+            pieces.append(extra)
+
+    return f"**Languages:** {', '.join(pieces)}"
+
+
 def render_repos_section(data: dict[str, Any]) -> str:
     collected = data["collected_at_utc"][:10]
     n = int(data["public_repos"])
     lines = [
-        f"**{_fmt_int(n)}** public repositories (verified **{collected}** against the GitHub API; descriptions use the repo's GitHub field when set, otherwise a short summary).",
+        f"**{_fmt_int(n)}** public repositories (verified **{collected}** against the GitHub API; "
+        "each row includes the GitHub description when it is informative, otherwise a short generated summary).",
         "",
         "| Repository | Description |",
         "| --- | --- |",
@@ -216,13 +191,12 @@ def render_repos_section(data: dict[str, Any]) -> str:
     for r in data["repos"]:
         name = r["name"]
         url = r["html_url"]
-        desc = r.get("description") or ""
-        cell = desc if desc else "—"
-        lines.append(f"| [{name}]({url}) | {cell} |")
+        desc = (r.get("description") or "").strip()
+        lines.append(f"| [{name}]({url}) | {desc} |")
     lines.extend(
         [
             "",
-            f"*Last synced from the GitHub API: {collected} — public repository list, descriptions, and per-repo language bytes (token recommended for rate limits).*",
+            f"*Last synced from the GitHub API: {collected} — public repository list and descriptions (token recommended for rate limits).*",
         ]
     )
     return "\n".join(lines).rstrip() + "\n"
@@ -238,6 +212,8 @@ def main() -> int:
     print(render_member_line(data))
     print("--- core-stats ---")
     print(render_core_stats(data))
+    print("--- skills-languages ---")
+    print(render_skills_languages_line(data))
     print("--- repos ---")
     print(render_repos_section(data))
     return 0

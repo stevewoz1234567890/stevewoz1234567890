@@ -5,6 +5,7 @@ Replace marked regions in README.md with rendered fragments from github-stats.js
 Markers (HTML comments):
   <!-- github-stats:auto:start member-line --> ... <!-- github-stats:auto:end member-line -->
   <!-- github-stats:auto:start core-stats --> ... <!-- github-stats:auto:end core-stats -->
+  <!-- github-stats:auto:start skills-languages --> ... <!-- github-stats:auto:end skills-languages -->
   <!-- github-stats:auto:start repos --> ... <!-- github-stats:auto:end repos -->
 
 Run after collect_github_stats.py:
@@ -24,6 +25,7 @@ from render_readme_stats import (  # noqa: E402
     render_core_stats,
     render_member_line,
     render_repos_section,
+    render_skills_languages_line,
 )
 from render_readme_stats import _load as load_stats  # noqa: E402
 
@@ -56,6 +58,7 @@ def main() -> int:
     try:
         text = _replace_region(text, "member-line", render_member_line(data))
         text = _replace_region(text, "core-stats", render_core_stats(data))
+        text = _replace_region(text, "skills-languages", render_skills_languages_line(data))
         text = _replace_region(text, "repos", render_repos_section(data))
     except ValueError as e:
         print(f"patch_readme: {e}", file=sys.stderr)
