@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -40,23 +39,12 @@ def render_member_line(data: dict[str, Any]) -> str:
 
 
 def render_core_stats(data: dict[str, Any]) -> str:
-    now = datetime.fromisoformat(data["collected_at_utc"].replace("Z", "+00:00"))
-    month = now.strftime("%B")
-    year = now.year
-    last_updated = f"{month} {year}"
-
     n_public = int(data["public_repos"])
-    n_lang = int(data.get("language_stats_repo_count") or n_public)
+    n_private = int(data.get("owned_private_repo_count", 0))
+    n_lang = int(data.get("language_stats_repo_count") or (n_public + n_private))
     inclusion = data.get("languages_by_repo_inclusion") or {}
 
-    lines: list[str] = [
-        f"*Language stats use the GitHub `languages` API on each **owned** repository the collector can see "
-        f"({_fmt_int(n_lang)} repos: **public** plus **private** when `GITHUB_TOKEN` has `repo` access). "
-        f"**% of repos** divides by that count (sums can exceed 100% because one repo lists multiple languages). "
-        f"The **pie** normalizes the same counts to 100%. The **repository table** below lists **public** repos only. "
-        f"**Last updated:** {last_updated}.*",
-        "",
-    ]
+    lines: list[str] = []
 
     pr_src = data.get("pr_issue_counts_source") or "search"
     pr_issue_lbl = (
@@ -73,6 +61,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "| --- | --- |",
             f"| **Joined** | {data['joined_display']} (~{data['calendar_years_one_decimal']} calendar years; **~{data['years_on_platform_rounded']} years** rounded) |",
             f"| **Public repositories** | **{_fmt_int(n_public)}** |",
+            f"| **Private repositories** (owned) | **{_fmt_int(n_private)}** |",
             f"| **Followers · Following** | **{_fmt_int(int(data['followers']))}** · **{_fmt_int(int(data['following']))}** |",
             f"| **Stars received** | **{_fmt_int(int(data['stars_received']))}** |",
             f"| **Pull requests · Issues** {pr_issue_lbl} | **{_fmt_int(int(data['prs_opened_lifetime']))}** · **{_fmt_int(int(data['issues_opened_lifetime']))}** |",
@@ -83,8 +72,6 @@ def render_core_stats(data: dict[str, Any]) -> str:
     lines.extend(
         [
             "### Languages by code volume",
-            "",
-            f"*{_fmt_int(n_lang)} owned repositories in this aggregate; **% of repos** = repos that list the language / {_fmt_int(n_lang)}.*",
             "",
             "| Language | Repositories | % of repos |",
             "| --- | ---: | ---: |",
@@ -104,7 +91,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "### Language mix (visualization)",
             "",
             "```mermaid",
-            'pie title Repository language share',
+            "pie title Repository language share (public and private owned)",
         ]
     )
     if inclusion and n_lang > 0:

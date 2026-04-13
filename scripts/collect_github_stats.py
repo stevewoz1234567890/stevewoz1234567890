@@ -57,6 +57,8 @@ class CollectedStats:
     calendar_years_one_decimal: str
     public_repos: int
     language_stats_repo_count: int
+    owned_public_repo_count: int
+    owned_private_repo_count: int
     followers: int
     following: int
     stars_received: int
@@ -499,6 +501,15 @@ def collect(login: str, token: str | None) -> CollectedStats:
     inclusion_sorted = dict(
         sorted(inclusion_repo_counts.items(), key=lambda kv: (-kv[1], kv[0]))
     )
+    owned_public_repo_count = 0
+    owned_private_repo_count = 0
+    for r in repos:
+        if not (r.get("owner") or {}).get("login") or not r.get("name"):
+            continue
+        if r.get("private"):
+            owned_private_repo_count += 1
+        else:
+            owned_public_repo_count += 1
 
     return CollectedStats(
         collected_at_utc=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -509,7 +520,9 @@ def collect(login: str, token: str | None) -> CollectedStats:
         years_on_platform_rounded=years_rounded,
         calendar_years_one_decimal=cal_one,
         public_repos=profile_public_repos,
-        language_stats_repo_count=len(owned_names),
+        language_stats_repo_count=owned_public_repo_count + owned_private_repo_count,
+        owned_public_repo_count=owned_public_repo_count,
+        owned_private_repo_count=owned_private_repo_count,
         followers=int(user.get("followers") or 0),
         following=int(user.get("following") or 0),
         stars_received=stars,

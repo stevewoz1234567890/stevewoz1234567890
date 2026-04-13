@@ -5,7 +5,6 @@ Senior software engineer focused on **production systems**, **machine learning**
 <!-- github-stats:auto:start member-line -->
 **GitHub:** member since **17 July 2021** (~**5 years** on the platform).
 <!-- github-stats:auto:end member-line -->
-The GitHub statistics section uses the GitHub API: the **language table and pie** can include **private** repositories when you run the collector with a suitable `GITHUB_TOKEN`; the **repository list** is **public** repositories only.
 
 ---
 
@@ -22,21 +21,18 @@ The GitHub statistics section uses the GitHub API: the **language table and pie*
 ## GitHub statistics
 
 <!-- github-stats:auto:start core-stats -->
-*Languages come from the GitHub `languages` API on each **public** repository. A repository can list several languages; the **table** counts how many repos include each language. The **pie** uses the same counts normalized so the slices sum to 100% (share of all repo–language entries). **Last updated:** April 2026.*
-
 ### Account snapshot
 
 | Metric | Value |
 | --- | --- |
 | **Joined** | 17 July 2021 (~4.7 calendar years; **~5 years** rounded) |
 | **Public repositories** | **61** |
+| **Private repositories** (owned) | **0** |
 | **Followers · Following** | **215** · **106** |
 | **Stars received** | **24** |
-| **Pull requests · Issues** (opened; GitHub search on visible/indexed items) | **6** · **1** |
+| **Pull requests · Issues** (opened, account lifetime) | **6** · **1** |
 
 ### Languages by code volume
-
-*61 public repositories; **% of repos** is repos that list the language / total repos (can exceed 100% in sum because one repo lists multiple languages).*
 
 | Language | Repositories | % of repos |
 | --- | ---: | ---: |
@@ -72,7 +68,7 @@ The GitHub statistics section uses the GitHub API: the **language table and pie*
 ### Language mix (visualization)
 
 ```mermaid
-pie title Repository language share
+pie title Repository language share (public and private owned)
   "Python" : 29.4
   "Jupyter Notebook" : 12.7
   "HTML" : 7.8
@@ -108,7 +104,7 @@ pie title Repository language share
 
 ## Skills and tools
 
-The following reflects languages, frameworks, and platforms used across **public** repositories (see the generated language list) and in broader professional work.
+The following reflects languages, frameworks, and platforms used across **public and private** owned repositories in the collected GitHub data (see the generated language list) and in broader professional work.
 
 <!-- github-stats:auto:start skills-languages -->
 **Languages:** JavaScript / TypeScript, C / C++, AMPL, Boogie, C#, CSS, Cuda, Dockerfile, Go, HTML, Java, Jupyter (notebooks), Kotlin, Makefile, MDX, Move, PHP, PLpgSQL, Python, R, Ruby, Rust, SCSS, Shell, Swift, Tact (TON), Tree-sitter Query, Matlab, SQL
