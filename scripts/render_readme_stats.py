@@ -196,7 +196,7 @@ def render_repos_section(data: dict[str, Any]) -> str:
     n = int(data["public_repos"])
     lines = [
         f"**{_fmt_int(n)}** public repositories (verified **{collected}** against the GitHub API; "
-        "each row includes the GitHub description when it is informative, otherwise a short generated summary).",
+        "descriptions are taken from each repo README when available, then the GitHub description, then a short fallback).",
         "",
         "| Repository | Description |",
         "| --- | --- |",

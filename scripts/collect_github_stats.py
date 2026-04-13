@@ -11,12 +11,15 @@ Environment:
                  Also read from repo-root `.env` if present (`GITHUB_TOKEN` or `GH_TOKEN`);
                  existing environment variables take precedence.
 
+  Repository table descriptions are taken from each repo’s **README** when possible (REST ``/repos/{owner}/{repo}/readme``), then the GitHub description field, then a short fallback.
+
 Output:
   Writes JSON to scripts/data/github-stats.json (path relative to repo root).
 """
 
 from __future__ import annotations
 
+import base64
 import json
 import os
 import re
@@ -417,6 +420,116 @@ def _normalize_repo_description(name: str, raw: str | None, primary: str | None)
     return f"{title} — public code repository."
 
 
+def _fetch_repo_readme_text(owner: str, name: str, token: str | None) -> str | None:
+    url = f"https://api.github.com/repos/{urllib.parse.quote(owner)}/{urllib.parse.quote(name)}/readme"
+    try:
+        data = _json_get(url, token)
+    except RuntimeError:
+        return None
+    content = data.get("content")
+    if not content or (data.get("encoding") or "").lower() != "base64":
+        return None
+    try:
+        raw = base64.standard_b64decode(content.replace("\n", "")).decode(
+            "utf-8", errors="replace"
+        )
+    except (ValueError, OSError):
+        return None
+    return raw
+
+
+def _truncate_blurb(s: str, max_len: int) -> str:
+    s = re.sub(r"\s+", " ", s.strip())
+    if len(s) <= max_len:
+        return s
+    cut = s[: max_len - 1]
+    sp = cut.rfind(" ")
+    if sp > max_len // 2:
+        cut = cut[:sp].rstrip(",;:")
+    return cut + "…"
+
+
+def _clean_markdown_inline(s: str) -> str:
+    s = re.sub(r"`([^`]+)`", r"\1", s)
+    s = re.sub(r"\*\*([^*]+)\*\*", r"\1", s)
+    s = re.sub(r"__([^_]+)__", r"\1", s)
+    s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", s)
+    s = re.sub(r"\[([^\]]+)\]\[[^\]]*\]", r"\1", s)
+    return s.strip()
+
+
+def _blurb_from_readme(md: str, max_len: int = 220) -> str | None:
+    """First useful title or sentence from README markdown."""
+    text = md.replace("\r\n", "\n").strip()
+    if not text:
+        return None
+    if text.startswith("---\n"):
+        end = text.find("\n---\n", 4)
+        if end != -1:
+            text = text[end + 5 :].lstrip()
+
+    lines = text.split("\n")
+    i = 0
+    while i < len(lines):
+        raw = lines[i]
+        line = raw.strip()
+        i += 1
+        if not line:
+            continue
+        if line.startswith("<!--"):
+            continue
+        if line in ("---", "***", "* * *"):
+            continue
+        if line.startswith("```"):
+            while i < len(lines) and lines[i].strip() != "```":
+                i += 1
+            if i < len(lines):
+                i += 1
+            continue
+        if line.startswith("!["):
+            continue
+        if line.startswith("[!["):
+            continue
+        if re.match(r"^<[a-zA-Z]", line):
+            continue
+        if re.match(r"^<p\s+align", line, re.I):
+            continue
+
+        m = re.match(r"^(#{1,6})\s+(.+)$", line)
+        if m:
+            title = _clean_markdown_inline(m.group(2).strip())
+            if title and len(title) > 1:
+                return _truncate_blurb(title, max_len)
+
+        if line.startswith(("#", ">", "|")):
+            continue
+        if line.startswith(("- ", "* ", "+ ")):
+            continue
+        if re.match(r"^[-*+]\s+\[[ xX]\]\s", line):
+            continue
+        if re.match(r"^\d+\.\s", line):
+            continue
+
+        prose = _clean_markdown_inline(line)
+        if prose and len(prose) > 10 and not prose.startswith("http"):
+            return _truncate_blurb(prose, max_len)
+
+    return None
+
+
+def _compose_repo_description(
+    name: str,
+    github_desc: str | None,
+    primary: str | None,
+    readme_md: str | None,
+) -> str:
+    if readme_md:
+        blurb = _blurb_from_readme(readme_md)
+        if blurb:
+            return blurb
+    return _normalize_repo_description(name, github_desc, primary)
+
+
 def _repos_contributed_total_count(login: str, token: str) -> int:
     query = """
     query($login: String!) {
@@ -479,7 +592,8 @@ def collect(login: str, token: str | None) -> CollectedStats:
         primary_repo_counts[primary] += 1
 
         if not r.get("private"):
-            desc = _normalize_repo_description(name, r.get("description"), primary)
+            readme_text = _fetch_repo_readme_text(owner, name, token)
+            desc = _compose_repo_description(name, r.get("description"), primary, readme_text)
             repo_rows.append(
                 {
                     "name": name,

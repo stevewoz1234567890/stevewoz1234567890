@@ -95,80 +95,80 @@ The following reflects languages, frameworks, and platforms used across **public
 ### Repositories
 
 <!-- github-stats:auto:start repos -->
-**61** public repositories (verified **2026-04-13** against the GitHub API; each row includes the GitHub description when it is informative, otherwise a short generated summary).
+**61** public repositories (verified **2026-04-13** against the GitHub API; descriptions are taken from each repo README when available, then the GitHub description, then a short fallback).
 
 | Repository | Description |
 | --- | --- |
 | [active-containers-ui](https://github.com/stevewoz1234567890/active-containers-ui) | Active Containers UI — public Python repository. |
-| [agentic-engineering-with-clojure](https://github.com/iwillig/agentic-engineering-with-clojure) | A comprehensive guide for using LLM coding agents with Clojure development. |
-| [ai-agent-learning](https://github.com/stevewoz1234567890/ai-agent-learning) | AI Agent Learning — public Python repository. |
-| [AI-Translation](https://github.com/stevewoz1234567890/AI-Translation) | AI Translation — public Python repository. |
-| [Avitation](https://github.com/miguel-so/Avitation) | Avitation — public TypeScript repository. |
-| [awesome-elegant-prompts](https://github.com/stevewoz1234567890/awesome-elegant-prompts) | Awesome Elegant Prompts — public Python repository. |
+| [agentic-engineering-with-clojure](https://github.com/iwillig/agentic-engineering-with-clojure) | Agentic Engineering with Clojure |
+| [ai-agent-learning](https://github.com/stevewoz1234567890/ai-agent-learning) | ai-agent-learning |
+| [AI-Translation](https://github.com/stevewoz1234567890/AI-Translation) | AI-Translation using GoogleTranslator |
+| [Avitation](https://github.com/miguel-so/Avitation) | I want NextJS web based admin portal dashboard UI and separated independent Node.js + ExpressJS + MySQL backend to interact with admin portal and avitation Landing page built in wordpress, avitation mobile apps. |
+| [awesome-elegant-prompts](https://github.com/stevewoz1234567890/awesome-elegant-prompts) | ✨ Awesome Elegant Prompts |
 | [beat-gpt4o](https://github.com/stevewoz1234567890/beat-gpt4o) | Beat GPT-4o — public Python repository. |
-| [Bellman-euqation](https://github.com/stevewoz1234567890/Bellman-euqation) | Bellman Euqation — public Jupyter Notebook repository. |
-| [canon-camera-controller](https://github.com/stevewoz1234567890/canon-camera-controller) | Canon Camera Controller — public Python repository. |
-| [capsult-network-on-brats](https://github.com/stevewoz1234567890/capsult-network-on-brats) | Capsult Network On BRATS — public Jupyter Notebook repository. |
-| [claude-code-discussion](https://github.com/stevewoz1234567890/claude-code-discussion) | Claude Code Discussion — public code repository. |
+| [Bellman-euqation](https://github.com/stevewoz1234567890/Bellman-euqation) | Bellman |
+| [canon-camera-controller](https://github.com/stevewoz1234567890/canon-camera-controller) | Python API to interact with Canon CCAPI |
+| [capsult-network-on-brats](https://github.com/stevewoz1234567890/capsult-network-on-brats) | capsult-network-on-brats |
+| [claude-code-discussion](https://github.com/stevewoz1234567890/claude-code-discussion) | Claude Code — curated practice notes |
 | [cleenq](https://github.com/miguel-so/cleenq) | Cleenq — public TypeScript repository. |
-| [Clojure-discussion](https://github.com/stevewoz1234567890/Clojure-discussion) | Clojure Discussion — public code repository. |
+| [Clojure-discussion](https://github.com/stevewoz1234567890/Clojure-discussion) | Clojure Development |
 | [coco-format-in-pytorch](https://github.com/stevewoz1234567890/coco-format-in-pytorch) | COCO Format In Pytorch — public Jupyter Notebook repository. |
-| [code-generation-agent-for-SWEbench](https://github.com/stevewoz1234567890/code-generation-agent-for-SWEbench) | Code Generation Agent For SWEbench — public Python repository. |
-| [code_generation_langchain](https://github.com/stevewoz1234567890/code_generation_langchain) | Code Generation Langchain — public Jupyter Notebook repository. |
+| [code-generation-agent-for-SWEbench](https://github.com/stevewoz1234567890/code-generation-agent-for-SWEbench) | code-generation-agent-for-SWEbench |
+| [code_generation_langchain](https://github.com/stevewoz1234567890/code_generation_langchain) | Copilot Travel Engine |
 | [coffee-analysis](https://github.com/stevewoz1234567890/coffee-analysis) | Coffee Analysis — public Jupyter Notebook repository. |
-| [collective-exploration](https://github.com/zero10xy/collective-exploration) | GitHub open-source public repo for Discord server community [Devs for hire & Jobs] for collective exploration, experiments, and collaboration. |
-| [compamy-house-csv](https://github.com/miguel-so/compamy-house-csv) | Compamy House Csv — public Python repository. |
+| [collective-exploration](https://github.com/zero10xy/collective-exploration) | Collective-Exploration |
+| [compamy-house-csv](https://github.com/miguel-so/compamy-house-csv) | Companies House Advanced Search with Director Export |
 | [Complex-Network-Theory](https://github.com/stevewoz1234567890/Complex-Network-Theory) | Complex Network Theory — public code repository. |
 | [cortnie](https://github.com/stevewoz1234567890/cortnie) | Cortnie — public HTML repository. |
-| [CS2210a_DS_java](https://github.com/stevewoz1234567890/CS2210a_DS_java) | CS2210a DS Java — public Java repository. |
+| [CS2210a_DS_java](https://github.com/stevewoz1234567890/CS2210a_DS_java) | CS2210a_DS_java |
 | [CSCI-E-25-lecture](https://github.com/stevewoz1234567890/CSCI-E-25-lecture) | CSCI E 25 Lecture — public Jupyter Notebook repository. |
-| [devtraining-needit-utah](https://github.com/stevewoz1234567890/devtraining-needit-utah) | Devtraining Needit Utah — public code repository. |
-| [disocrd-bot](https://github.com/stevewoz1234567890/disocrd-bot) | Disocrd Bot — public Python repository. |
-| [drupal-issues](https://github.com/stevewoz1234567890/drupal-issues) | Drupal Issues — public code repository. |
+| [devtraining-needit-utah](https://github.com/stevewoz1234567890/devtraining-needit-utah) | Generated files |
+| [disocrd-bot](https://github.com/stevewoz1234567890/disocrd-bot) | pip install -U discord.py |
+| [drupal-issues](https://github.com/stevewoz1234567890/drupal-issues) | Drupal contribution intelligence |
 | [dulcinea-admin](https://github.com/miguel-so/dulcinea-admin) | Dulcinea Admin — public CSS repository. |
 | [E-commerce-Returns-Prediction-Challenge](https://github.com/stevewoz1234567890/E-commerce-Returns-Prediction-Challenge) | E Commerce Returns Prediction Challenge — public Jupyter Notebook repository. |
 | [Exponential-Grid-Navigation-System](https://github.com/stevewoz1234567890/Exponential-Grid-Navigation-System) | Exponential Grid Navigation System — public C# repository. |
-| [FE-ebay-api-cron](https://github.com/miguel-so/FE-ebay-api-cron) | FE Ebay API Cron — public JavaScript repository. |
+| [FE-ebay-api-cron](https://github.com/miguel-so/FE-ebay-api-cron) | eBay Listing Monitor |
 | [Fetch-Data-Crypto-Exchange](https://github.com/stevewoz1234567890/Fetch-Data-Crypto-Exchange) | Fetch Data Crypto Exchange — public Python repository. |
-| [firebase-discussion](https://github.com/stevewoz1234567890/firebase-discussion) | Firebase Discussion — public code repository. |
-| [flight-path-tracker](https://github.com/stevewoz1234567890/flight-path-tracker) | Flight Path Tracker — public JavaScript repository. |
-| [Foreign_Body_Detection_Xray_Deep_Learning](https://github.com/stevewoz1234567890/Foreign_Body_Detection_Xray_Deep_Learning) | A deep neural network trained to detect foreign bodies on chest X-rays |
-| [Get_Finshi_MTG](https://github.com/stevewoz1234567890/Get_Finshi_MTG) | Get Finshi MTG — public Jupyter Notebook repository. |
+| [firebase-discussion](https://github.com/stevewoz1234567890/firebase-discussion) | Firebase Discussion |
+| [flight-path-tracker](https://github.com/stevewoz1234567890/flight-path-tracker) | Flight Path Tracker API |
+| [Foreign_Body_Detection_Xray_Deep_Learning](https://github.com/stevewoz1234567890/Foreign_Body_Detection_Xray_Deep_Learning) | Synthetic Data Creation for the Improvement of the Performance of Classifiers. |
+| [Get_Finshi_MTG](https://github.com/stevewoz1234567890/Get_Finshi_MTG) | Get_Finshi_MTG |
 | [huggingface.co-issues](https://github.com/stevewoz1234567890/huggingface.co-issues) | Huggingface.co Issues — public code repository. |
-| [iota](https://github.com/stevewoz1234567890/iota) | Bringing the real world to Web3 with a scalable, decentralized and programmable DLT infrastructure. |
-| [lightfm](https://github.com/stevewoz1234567890/lightfm) | A Python implementation of LightFM, a hybrid recommendation algorithm. |
-| [MERN-artwork](https://github.com/miguel-so/MERN-artwork) | MERN Artwork — public CSS repository. |
+| [iota](https://github.com/stevewoz1234567890/iota) | IOTA |
+| [lightfm](https://github.com/stevewoz1234567890/lightfm) | LightFM |
+| [MERN-artwork](https://github.com/miguel-so/MERN-artwork) | Dulcinea-Art - MERN Stack Artwork Gallery |
 | [Meza](https://github.com/stevewoz1234567890/Meza) | Meza — public Java repository. |
-| [MQDF-with-MNIST](https://github.com/stevewoz1234567890/MQDF-with-MNIST) | MQDF With MNIST — public Jupyter Notebook repository. |
+| [MQDF-with-MNIST](https://github.com/stevewoz1234567890/MQDF-with-MNIST) | MQDF-with-MNIST |
 | [Name-Classification](https://github.com/stevewoz1234567890/Name-Classification) | Name Classification — public Python repository. |
 | [Neural_ODEs](https://github.com/stevewoz1234567890/Neural_ODEs) | Neural ODEs — public Jupyter Notebook repository. |
-| [openclaw](https://github.com/stevewoz1234567890/openclaw) | Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 |
-| [Packaging-Optimization](https://github.com/stevewoz1234567890/Packaging-Optimization) | Packaging Optimization — public Python repository. |
-| [Pose-Classification-with-Mediapipe](https://github.com/stevewoz1234567890/Pose-Classification-with-Mediapipe) | Pose Classification With Mediapipe — public Python repository. |
-| [powerball](https://github.com/stevewoz1234567890/powerball) | Powerball — public Python repository. |
-| [Probids](https://github.com/miguel-so/Probids) | Probids — public TypeScript repository. |
+| [openclaw](https://github.com/stevewoz1234567890/openclaw) | 🦞 OpenClaw — Personal AI Assistant |
+| [Packaging-Optimization](https://github.com/stevewoz1234567890/Packaging-Optimization) | 3D Package Optimization |
+| [Pose-Classification-with-Mediapipe](https://github.com/stevewoz1234567890/Pose-Classification-with-Mediapipe) | Mediapipe |
+| [powerball](https://github.com/stevewoz1234567890/powerball) | Advanced Lottery Prediction System |
+| [Probids](https://github.com/miguel-so/Probids) | Probids Platform |
 | [qlora](https://github.com/stevewoz1234567890/qlora) | Qlora — public Jupyter Notebook repository. |
 | [Quantum-Fourier-Transform](https://github.com/stevewoz1234567890/Quantum-Fourier-Transform) | Quantum Fourier Transform — public Python repository. |
-| [Qui-Gon_LP](https://github.com/stevewoz1234567890/Qui-Gon_LP) | Qui Gon LP — public AMPL repository. |
-| [ridges](https://github.com/stevewoz1234567890/ridges) | Building Software Agents On Bittensor |
-| [Ruby-and-Rails-Discussion](https://github.com/stevewoz1234567890/Ruby-and-Rails-Discussion) | Ruby And Rails Discussion — public Ruby repository. |
-| [rust-test](https://github.com/stevewoz1234567890/rust-test) | Rust Test — public Rust repository. |
+| [Qui-Gon_LP](https://github.com/stevewoz1234567890/Qui-Gon_LP) | Qui-Gon_LP |
+| [ridges](https://github.com/stevewoz1234567890/ridges) | Ridges - SN62 |
+| [Ruby-and-Rails-Discussion](https://github.com/stevewoz1234567890/Ruby-and-Rails-Discussion) | Ruby & Rails Development |
+| [rust-test](https://github.com/stevewoz1234567890/rust-test) | Streamed Cache Interview Question |
 | [scrap_linkedin_llm](https://github.com/stevewoz1234567890/scrap_linkedin_llm) | Scrap Linkedin LLM — public HTML repository. |
 | [scrum-board-node](https://github.com/stevewoz1234567890/scrum-board-node) | Scrum Board Node — public JavaScript repository. |
-| [shape_predictor_81_face_landmarks](https://github.com/stevewoz1234567890/shape_predictor_81_face_landmarks) | Custom shape predictor model trained to find 81 facial feature landmarks given any image |
+| [shape_predictor_81_face_landmarks](https://github.com/stevewoz1234567890/shape_predictor_81_face_landmarks) | 81 Facial Landmarks Shape Predictor |
 | [sierpinski](https://github.com/stevewoz1234567890/sierpinski) | Sierpinski — public Python repository. |
 | [Skin-Cancer-Classification-using-EfficientNet](https://github.com/stevewoz1234567890/Skin-Cancer-Classification-using-EfficientNet) | Skin Cancer Classification Using Efficient Net — public Jupyter Notebook repository. |
-| [sn-learn-javascript](https://github.com/stevewoz1234567890/sn-learn-javascript) | Example scripts from the series "Learn JavaScript on the Now Platform" |
+| [sn-learn-javascript](https://github.com/stevewoz1234567890/sn-learn-javascript) | Welcome to Learn JavaScript on the Now Platform! |
 | [spectrographic](https://github.com/stevewoz1234567890/spectrographic) | Spectrographic — public Python repository. |
 | [stats-test](https://github.com/stevewoz1234567890/stats-test) | Stats Test — public code repository. |
-| [stevewoz1234567890](https://github.com/stevewoz1234567890/stevewoz1234567890) | Stevewoz1234567890 — public Python repository. |
-| [StyleGAN2](https://github.com/stevewoz1234567890/StyleGAN2) | Style GAN2 — public Python repository. |
-| [tact-script-in-Ton](https://github.com/stevewoz1234567890/tact-script-in-Ton) | Tact Script In TON — public TypeScript repository. |
-| [video-hover-effect](https://github.com/stevewoz1234567890/video-hover-effect) | Video Hover Effect — public HTML repository. |
+| [stevewoz1234567890](https://github.com/stevewoz1234567890/stevewoz1234567890) | ﻿## Senior Software Engineer |
+| [StyleGAN2](https://github.com/stevewoz1234567890/StyleGAN2) | Gradient StyleGAN2 Template Repo |
+| [tact-script-in-Ton](https://github.com/stevewoz1234567890/tact-script-in-Ton) | Tact template project |
+| [video-hover-effect](https://github.com/stevewoz1234567890/video-hover-effect) | video-hover-effect |
 | [vscode-extension-test](https://github.com/stevewoz1234567890/vscode-extension-test) | Vscode Extension Test — public JavaScript repository. |
-| [Wine-Name-Match](https://github.com/stevewoz1234567890/Wine-Name-Match) | Wine Name Match — public Python repository. |
+| [Wine-Name-Match](https://github.com/stevewoz1234567890/Wine-Name-Match) | Wine-Name-Match |
 | [wishlist](https://github.com/stevewoz1234567890/wishlist) | Wish List Now Platform Application |
-| [x-algorithm](https://github.com/stevewoz1234567890/x-algorithm) | Algorithm powering the For You feed on X |
+| [x-algorithm](https://github.com/stevewoz1234567890/x-algorithm) | X For You Feed Algorithm |
 
 *Last synced from the GitHub API: 2026-04-13 — public repository list and descriptions (token recommended for rate limits).*
 <!-- github-stats:auto:end repos -->
