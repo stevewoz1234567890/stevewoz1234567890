@@ -167,19 +167,39 @@ def _graphql(query: str, variables: dict[str, Any], token: str) -> dict[str, Any
     return parsed["data"]
 
 
-def _paginate_owned_repos(login: str, token: str | None) -> list[dict[str, Any]]:
-    """Repos owned by `login`. With a token, uses /user/repos so private repos are included."""
+def _paginate_repos_for_stats(login: str, token: str | None) -> list[dict[str, Any]]:
+    """Repositories to include in language/skills stats.
+
+    Without a token: public repos for `login` (REST ``/users/{login}/repos``).
+
+    With a token: all repos the account can access via ``/user/repos`` — personal,
+    organization, and collaborator — with ``visibility=all`` so **private** repos
+    are included (subject to token scopes).
+    """
     repos: list[dict[str, Any]] = []
     page = 1
     per_page = 100
     while True:
-        q = urllib.parse.urlencode(
-            {"per_page": per_page, "page": page, "type": "owner", "sort": "full_name"}
-        )
         if token:
-            url = f"https://api.github.com/user/repos?{q}"
+            params = {
+                "per_page": per_page,
+                "page": page,
+                "sort": "full_name",
+                "visibility": "all",
+                "affiliation": "owner,organization_member,collaborator",
+            }
+            url = f"https://api.github.com/user/repos?{urllib.parse.urlencode(params)}"
         else:
-            url = f"https://api.github.com/users/{urllib.parse.quote(login)}/repos?{q}"
+            params = {
+                "per_page": per_page,
+                "page": page,
+                "type": "owner",
+                "sort": "full_name",
+            }
+            url = (
+                f"https://api.github.com/users/{urllib.parse.quote(login)}/repos?"
+                f"{urllib.parse.urlencode(params)}"
+            )
         batch = _json_get(url, token)
         if not batch:
             break
@@ -188,8 +208,16 @@ def _paginate_owned_repos(login: str, token: str | None) -> list[dict[str, Any]]
             break
         page += 1
     if token:
-        want = login.lower()
-        return [r for r in repos if (r.get("owner") or {}).get("login", "").lower() == want]
+        seen: set[int] = set()
+        out: list[dict[str, Any]] = []
+        for r in repos:
+            rid = r.get("id")
+            if isinstance(rid, int):
+                if rid in seen:
+                    continue
+                seen.add(rid)
+            out.append(r)
+        return out
     return [r for r in repos if not r.get("private")]
 
 
@@ -417,7 +445,7 @@ def collect(login: str, token: str | None) -> CollectedStats:
     cal_years, years_rounded = _years_since_join(created_at)
     cal_one = f"{cal_years:.1f}"
 
-    repos = _paginate_owned_repos(login, token)
+    repos = _paginate_repos_for_stats(login, token)
     profile_public_repos = int(user.get("public_repos") or 0)
     langs: dict[str, int] = defaultdict(int)
     primary_repo_counts: dict[str, int] = defaultdict(int)

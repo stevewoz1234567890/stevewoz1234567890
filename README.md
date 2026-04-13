@@ -27,76 +27,78 @@ Senior software engineer focused on **production systems**, **machine learning**
 | --- | --- |
 | **Joined** | 17 July 2021 (~4.7 calendar years; **~5 years** rounded) |
 | **Public repositories** | **61** |
-| **Private repositories** (owned) | **0** |
+| **Private repositories** | **0** |
 | **Followers · Following** | **215** · **106** |
-| **Stars received** | **24** |
+| **Stars received** | **32** |
 | **Pull requests · Issues** (opened, account lifetime) | **6** · **1** |
 
 ### Languages by code volume
 
 | Language | Repositories | % of repos |
 | --- | ---: | ---: |
-| Python | 30 | 49.2% |
-| Jupyter Notebook | 13 | 21.3% |
-| HTML | 8 | 13.1% |
-| JavaScript | 8 | 13.1% |
-| CSS | 5 | 8.2% |
-| Dockerfile | 5 | 8.2% |
-| TypeScript | 4 | 6.6% |
-| Ruby | 3 | 4.9% |
-| Rust | 3 | 4.9% |
-| Shell | 3 | 4.9% |
-| Java | 2 | 3.3% |
-| PLpgSQL | 2 | 3.3% |
-| AMPL | 1 | 1.6% |
-| Boogie | 1 | 1.6% |
-| C | 1 | 1.6% |
-| C# | 1 | 1.6% |
-| C++ | 1 | 1.6% |
-| Cuda | 1 | 1.6% |
-| Go | 1 | 1.6% |
-| Kotlin | 1 | 1.6% |
-| MDX | 1 | 1.6% |
-| Makefile | 1 | 1.6% |
-| Move | 1 | 1.6% |
-| PHP | 1 | 1.6% |
-| R | 1 | 1.6% |
-| SCSS | 1 | 1.6% |
-| Swift | 1 | 1.6% |
-| Tree-sitter Query | 1 | 1.6% |
+| Python | 32 | 45.7% |
+| HTML | 16 | 22.9% |
+| JavaScript | 14 | 20.0% |
+| Jupyter Notebook | 13 | 18.6% |
+| CSS | 11 | 15.7% |
+| TypeScript | 9 | 12.9% |
+| Dockerfile | 5 | 7.1% |
+| Ruby | 4 | 5.7% |
+| Shell | 4 | 5.7% |
+| Rust | 3 | 4.3% |
+| Java | 2 | 2.9% |
+| Makefile | 2 | 2.9% |
+| PLpgSQL | 2 | 2.9% |
+| AMPL | 1 | 1.4% |
+| Batchfile | 1 | 1.4% |
+| Boogie | 1 | 1.4% |
+| C | 1 | 1.4% |
+| C# | 1 | 1.4% |
+| C++ | 1 | 1.4% |
+| Cuda | 1 | 1.4% |
+| Go | 1 | 1.4% |
+| Kotlin | 1 | 1.4% |
+| MDX | 1 | 1.4% |
+| Move | 1 | 1.4% |
+| PHP | 1 | 1.4% |
+| R | 1 | 1.4% |
+| SCSS | 1 | 1.4% |
+| Swift | 1 | 1.4% |
+| Tree-sitter Query | 1 | 1.4% |
 
 ### Language mix (visualization)
 
 ```mermaid
-pie title Repository language share (public and private owned)
-  "Python" : 29.4
-  "Jupyter Notebook" : 12.7
-  "HTML" : 7.8
-  "JavaScript" : 7.8
-  "CSS" : 4.9
-  "Dockerfile" : 4.9
-  "TypeScript" : 3.9
-  "Ruby" : 2.9
-  "Rust" : 2.9
-  "Shell" : 2.9
-  "Java" : 2.0
-  "PLpgSQL" : 2.0
-  "AMPL" : 1.0
-  "Boogie" : 1.0
-  "C" : 1.0
-  "C#" : 1.0
-  "C++" : 1.0
-  "Cuda" : 1.0
-  "Go" : 1.0
-  "Kotlin" : 1.0
-  "MDX" : 1.0
-  "Makefile" : 1.0
-  "Move" : 1.0
-  "PHP" : 1.0
-  "R" : 1.0
-  "SCSS" : 1.0
-  "Swift" : 1.0
-  "Tree-sitter Query" : 1.0
+pie title Repository language share (personal, org, collaborator)
+  "Python" : 24.1
+  "HTML" : 12.0
+  "JavaScript" : 10.5
+  "Jupyter Notebook" : 9.8
+  "CSS" : 8.3
+  "TypeScript" : 6.8
+  "Dockerfile" : 3.8
+  "Ruby" : 3.0
+  "Shell" : 3.0
+  "Rust" : 2.3
+  "Java" : 1.5
+  "Makefile" : 1.5
+  "PLpgSQL" : 1.5
+  "AMPL" : 0.8
+  "Batchfile" : 0.8
+  "Boogie" : 0.8
+  "C" : 0.8
+  "C#" : 0.8
+  "C++" : 0.8
+  "Cuda" : 0.8
+  "Go" : 0.8
+  "Kotlin" : 0.8
+  "MDX" : 0.8
+  "Move" : 0.8
+  "PHP" : 0.8
+  "R" : 0.8
+  "SCSS" : 0.8
+  "Swift" : 0.8
+  "Tree-sitter Query" : 0.8
 ```
 <!-- github-stats:auto:end core-stats -->
 
@@ -107,7 +109,7 @@ pie title Repository language share (public and private owned)
 The following reflects languages, frameworks, and platforms used across **public and private** owned repositories in the collected GitHub data (see the generated language list) and in broader professional work.
 
 <!-- github-stats:auto:start skills-languages -->
-**Languages:** JavaScript / TypeScript, C / C++, AMPL, Boogie, C#, CSS, Cuda, Dockerfile, Go, HTML, Java, Jupyter (notebooks), Kotlin, Makefile, MDX, Move, PHP, PLpgSQL, Python, R, Ruby, Rust, SCSS, Shell, Swift, Tact (TON), Tree-sitter Query, Matlab, SQL
+**Languages:** JavaScript / TypeScript, C / C++, AMPL, Batchfile, Boogie, C#, CSS, Cuda, Dockerfile, Go, HTML, Java, Jupyter (notebooks), Kotlin, Makefile, MDX, Move, PHP, PLpgSQL, Python, R, Ruby, Rust, SCSS, Shell, Swift, Tact (TON), Tree-sitter Query, Matlab, SQL
 <!-- github-stats:auto:end skills-languages -->
 
 **Machine learning & AI:** classical ML, deep learning, computer vision, NLP, PyTorch, TensorFlow, Keras, OpenCV, MediaPipe, EfficientNet, StyleGAN2, neural ODEs, recommendation systems (e.g. LightFM), LLMs, RAG, LangChain / LangGraph, QLoRA / fine-tuning, coding agents and SWE-bench style tooling
@@ -130,19 +132,24 @@ The following reflects languages, frameworks, and platforms used across **public
 | Repository | Description |
 | --- | --- |
 | [active-containers-ui](https://github.com/stevewoz1234567890/active-containers-ui) | Active Containers UI — public Python repository. |
+| [agentic-engineering-with-clojure](https://github.com/iwillig/agentic-engineering-with-clojure) | A comprehensive guide for using LLM coding agents with Clojure development. |
 | [ai-agent-learning](https://github.com/stevewoz1234567890/ai-agent-learning) | AI Agent Learning — public Python repository. |
 | [AI-Translation](https://github.com/stevewoz1234567890/AI-Translation) | AI Translation — public Python repository. |
+| [Avitation](https://github.com/miguel-so/Avitation) | Avitation — public TypeScript repository. |
 | [awesome-elegant-prompts](https://github.com/stevewoz1234567890/awesome-elegant-prompts) | Awesome Elegant Prompts — public Python repository. |
 | [beat-gpt4o](https://github.com/stevewoz1234567890/beat-gpt4o) | Beat GPT-4o — public Python repository. |
 | [Bellman-euqation](https://github.com/stevewoz1234567890/Bellman-euqation) | Bellman Euqation — public Jupyter Notebook repository. |
 | [canon-camera-controller](https://github.com/stevewoz1234567890/canon-camera-controller) | Canon Camera Controller — public Python repository. |
 | [capsult-network-on-brats](https://github.com/stevewoz1234567890/capsult-network-on-brats) | Capsult Network On BRATS — public Jupyter Notebook repository. |
 | [claude-code-discussion](https://github.com/stevewoz1234567890/claude-code-discussion) | Claude Code Discussion — public code repository. |
+| [cleenq](https://github.com/miguel-so/cleenq) | Cleenq — public TypeScript repository. |
 | [Clojure-discussion](https://github.com/stevewoz1234567890/Clojure-discussion) | Clojure Discussion — public code repository. |
 | [coco-format-in-pytorch](https://github.com/stevewoz1234567890/coco-format-in-pytorch) | COCO Format In Pytorch — public Jupyter Notebook repository. |
 | [code-generation-agent-for-SWEbench](https://github.com/stevewoz1234567890/code-generation-agent-for-SWEbench) | Code Generation Agent For SWEbench — public Python repository. |
 | [code_generation_langchain](https://github.com/stevewoz1234567890/code_generation_langchain) | Code Generation Langchain — public Jupyter Notebook repository. |
 | [coffee-analysis](https://github.com/stevewoz1234567890/coffee-analysis) | Coffee Analysis — public Jupyter Notebook repository. |
+| [collective-exploration](https://github.com/zero10xy/collective-exploration) | GitHub open-source public repo for Discord server community [Devs for hire & Jobs] for collective exploration, experiments, and collaboration. |
+| [compamy-house-csv](https://github.com/miguel-so/compamy-house-csv) | Compamy House Csv — public Python repository. |
 | [Complex-Network-Theory](https://github.com/stevewoz1234567890/Complex-Network-Theory) | Complex Network Theory — public code repository. |
 | [cortnie](https://github.com/stevewoz1234567890/cortnie) | Cortnie — public HTML repository. |
 | [CS2210a_DS_java](https://github.com/stevewoz1234567890/CS2210a_DS_java) | CS2210a DS Java — public Java repository. |
@@ -150,8 +157,10 @@ The following reflects languages, frameworks, and platforms used across **public
 | [devtraining-needit-utah](https://github.com/stevewoz1234567890/devtraining-needit-utah) | Devtraining Needit Utah — public code repository. |
 | [disocrd-bot](https://github.com/stevewoz1234567890/disocrd-bot) | Disocrd Bot — public Python repository. |
 | [drupal-issues](https://github.com/stevewoz1234567890/drupal-issues) | Drupal Issues — public code repository. |
+| [dulcinea-admin](https://github.com/miguel-so/dulcinea-admin) | Dulcinea Admin — public CSS repository. |
 | [E-commerce-Returns-Prediction-Challenge](https://github.com/stevewoz1234567890/E-commerce-Returns-Prediction-Challenge) | E Commerce Returns Prediction Challenge — public Jupyter Notebook repository. |
 | [Exponential-Grid-Navigation-System](https://github.com/stevewoz1234567890/Exponential-Grid-Navigation-System) | Exponential Grid Navigation System — public C# repository. |
+| [FE-ebay-api-cron](https://github.com/miguel-so/FE-ebay-api-cron) | FE Ebay API Cron — public JavaScript repository. |
 | [Fetch-Data-Crypto-Exchange](https://github.com/stevewoz1234567890/Fetch-Data-Crypto-Exchange) | Fetch Data Crypto Exchange — public Python repository. |
 | [firebase-discussion](https://github.com/stevewoz1234567890/firebase-discussion) | Firebase Discussion — public code repository. |
 | [flight-path-tracker](https://github.com/stevewoz1234567890/flight-path-tracker) | Flight Path Tracker — public JavaScript repository. |
@@ -160,6 +169,7 @@ The following reflects languages, frameworks, and platforms used across **public
 | [huggingface.co-issues](https://github.com/stevewoz1234567890/huggingface.co-issues) | Huggingface.co Issues — public code repository. |
 | [iota](https://github.com/stevewoz1234567890/iota) | Bringing the real world to Web3 with a scalable, decentralized and programmable DLT infrastructure. |
 | [lightfm](https://github.com/stevewoz1234567890/lightfm) | A Python implementation of LightFM, a hybrid recommendation algorithm. |
+| [MERN-artwork](https://github.com/miguel-so/MERN-artwork) | MERN Artwork — public CSS repository. |
 | [Meza](https://github.com/stevewoz1234567890/Meza) | Meza — public Java repository. |
 | [MQDF-with-MNIST](https://github.com/stevewoz1234567890/MQDF-with-MNIST) | MQDF With MNIST — public Jupyter Notebook repository. |
 | [Name-Classification](https://github.com/stevewoz1234567890/Name-Classification) | Name Classification — public Python repository. |
@@ -168,6 +178,7 @@ The following reflects languages, frameworks, and platforms used across **public
 | [Packaging-Optimization](https://github.com/stevewoz1234567890/Packaging-Optimization) | Packaging Optimization — public Python repository. |
 | [Pose-Classification-with-Mediapipe](https://github.com/stevewoz1234567890/Pose-Classification-with-Mediapipe) | Pose Classification With Mediapipe — public Python repository. |
 | [powerball](https://github.com/stevewoz1234567890/powerball) | Powerball — public Python repository. |
+| [Probids](https://github.com/miguel-so/Probids) | Probids — public TypeScript repository. |
 | [qlora](https://github.com/stevewoz1234567890/qlora) | Qlora — public Jupyter Notebook repository. |
 | [Quantum-Fourier-Transform](https://github.com/stevewoz1234567890/Quantum-Fourier-Transform) | Quantum Fourier Transform — public Python repository. |
 | [Qui-Gon_LP](https://github.com/stevewoz1234567890/Qui-Gon_LP) | Qui Gon LP — public AMPL repository. |

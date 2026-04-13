@@ -61,7 +61,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "| --- | --- |",
             f"| **Joined** | {data['joined_display']} (~{data['calendar_years_one_decimal']} calendar years; **~{data['years_on_platform_rounded']} years** rounded) |",
             f"| **Public repositories** | **{_fmt_int(n_public)}** |",
-            f"| **Private repositories** (owned) | **{_fmt_int(n_private)}** |",
+            f"| **Private repositories** | **{_fmt_int(n_private)}** |",
             f"| **Followers · Following** | **{_fmt_int(int(data['followers']))}** · **{_fmt_int(int(data['following']))}** |",
             f"| **Stars received** | **{_fmt_int(int(data['stars_received']))}** |",
             f"| **Pull requests · Issues** {pr_issue_lbl} | **{_fmt_int(int(data['prs_opened_lifetime']))}** · **{_fmt_int(int(data['issues_opened_lifetime']))}** |",
@@ -91,7 +91,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "### Language mix (visualization)",
             "",
             "```mermaid",
-            "pie title Repository language share (public and private owned)",
+            "pie title Repository language share (personal, org, collaborator)",
         ]
     )
     if inclusion and n_lang > 0:
