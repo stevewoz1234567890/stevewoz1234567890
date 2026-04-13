@@ -27,7 +27,6 @@ Senior software engineer focused on **production systems**, **machine learning**
 | --- | --- |
 | **Joined** | 17 July 2021 (~4.7 calendar years; **~5 years** rounded) |
 | **Public repositories** | **61** |
-| **Private repositories** | **0** |
 | **Followers · Following** | **215** · **106** |
 | **Stars received** | **32** |
 | **Pull requests · Issues** (opened, account lifetime) | **6** · **1** |
@@ -68,38 +67,7 @@ Senior software engineer focused on **production systems**, **machine learning**
 
 ### Language mix (visualization)
 
-```mermaid
-pie title Repository language share (personal, org, collaborator)
-  "Python" : 24.1
-  "HTML" : 12.0
-  "JavaScript" : 10.5
-  "Jupyter Notebook" : 9.8
-  "CSS" : 8.3
-  "TypeScript" : 6.8
-  "Dockerfile" : 3.8
-  "Ruby" : 3.0
-  "Shell" : 3.0
-  "Rust" : 2.3
-  "Java" : 1.5
-  "Makefile" : 1.5
-  "PLpgSQL" : 1.5
-  "AMPL" : 0.8
-  "Batchfile" : 0.8
-  "Boogie" : 0.8
-  "C" : 0.8
-  "C#" : 0.8
-  "C++" : 0.8
-  "Cuda" : 0.8
-  "Go" : 0.8
-  "Kotlin" : 0.8
-  "MDX" : 0.8
-  "Move" : 0.8
-  "PHP" : 0.8
-  "R" : 0.8
-  "SCSS" : 0.8
-  "Swift" : 0.8
-  "Tree-sitter Query" : 0.8
-```
+![Language mix — repositories listing each language](assets/language-mix.png)
 <!-- github-stats:auto:end core-stats -->
 
 ---

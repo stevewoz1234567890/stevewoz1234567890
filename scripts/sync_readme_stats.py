@@ -9,6 +9,8 @@ With the repo virtualenv (create once: ``python -m venv .venv``):
   Windows: .venv\\Scripts\\python.exe scripts\\sync_readme_stats.py
   macOS/Linux: .venv/bin/python scripts/sync_readme_stats.py
 
+For the README language-mix PNG, install: ``pip install -r scripts/requirements-readme.txt``
+
 Environment:
   GITHUB_LOGIN   optional override (default stevewoz1234567890)
   GITHUB_TOKEN   or GH_TOKEN — recommended (GraphQL + higher REST limits).

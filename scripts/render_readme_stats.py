@@ -15,6 +15,8 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = REPO_ROOT / "scripts" / "data" / "github-stats.json"
+ASSETS_DIR = REPO_ROOT / "assets"
+LANGUAGE_MIX_CHART = ASSETS_DIR / "language-mix.png"
 
 
 def _load() -> dict[str, Any]:
@@ -40,8 +42,7 @@ def render_member_line(data: dict[str, Any]) -> str:
 
 def render_core_stats(data: dict[str, Any]) -> str:
     n_public = int(data["public_repos"])
-    n_private = int(data.get("owned_private_repo_count", 0))
-    n_lang = int(data.get("language_stats_repo_count") or (n_public + n_private))
+    n_lang = int(data.get("language_stats_repo_count") or n_public)
     inclusion = data.get("languages_by_repo_inclusion") or {}
 
     lines: list[str] = []
@@ -61,7 +62,6 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "| --- | --- |",
             f"| **Joined** | {data['joined_display']} (~{data['calendar_years_one_decimal']} calendar years; **~{data['years_on_platform_rounded']} years** rounded) |",
             f"| **Public repositories** | **{_fmt_int(n_public)}** |",
-            f"| **Private repositories** | **{_fmt_int(n_private)}** |",
             f"| **Followers · Following** | **{_fmt_int(int(data['followers']))}** · **{_fmt_int(int(data['following']))}** |",
             f"| **Stars received** | **{_fmt_int(int(data['stars_received']))}** |",
             f"| **Pull requests · Issues** {pr_issue_lbl} | **{_fmt_int(int(data['prs_opened_lifetime']))}** · **{_fmt_int(int(data['issues_opened_lifetime']))}** |",
@@ -90,22 +90,46 @@ def render_core_stats(data: dict[str, Any]) -> str:
         [
             "### Language mix (visualization)",
             "",
-            "```mermaid",
-            "pie title Repository language share (personal, org, collaborator)",
         ]
     )
+    chart_written = False
     if inclusion and n_lang > 0:
+        try:
+            from language_mix_chart import write_language_mix_png
+
+            chart_written = bool(
+                write_language_mix_png(LANGUAGE_MIX_CHART, inclusion, n_lang)
+            )
+        except Exception:
+            chart_written = False
+
+    if chart_written:
+        lines.append(
+            "![Language mix — repositories listing each language](assets/language-mix.png)"
+        )
+        lines.append("")
+    elif inclusion and n_lang > 0:
         total_inc = sum(int(v) for v in inclusion.values())
+        lines.extend(["```mermaid", "pie title Language share (top + other)"])
         if total_inc <= 0:
             lines.append('  "Unknown" : 100')
         else:
-            for name, count in sorted(inclusion.items(), key=lambda kv: (-kv[1], kv[0])):
+            sorted_inc = sorted(inclusion.items(), key=lambda kv: (-kv[1], kv[0]))
+            top_k = 8
+            if len(sorted_inc) > top_k:
+                head = sorted_inc[:top_k]
+                tail_sum = sum(c for _, c in sorted_inc[top_k:])
+                pie_rows = list(head) + [(f"Other ({len(sorted_inc) - top_k})", tail_sum)]
+            else:
+                pie_rows = sorted_inc
+            for name, count in pie_rows:
                 pct = 100.0 * int(count) / total_inc
                 label = _mermaid_slice_label(name)
                 lines.append(f'  "{label}" : {round(pct, 1)}')
+        lines.extend(["```", ""])
     else:
-        lines.append('  "Unknown" : 100')
-    lines.extend(["```", ""])
+        lines.append("*No language data for chart.*")
+        lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"
 
