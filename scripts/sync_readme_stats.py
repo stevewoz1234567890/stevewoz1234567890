@@ -11,7 +11,8 @@ With the repo virtualenv (create once: ``python -m venv .venv``):
 
 Environment:
   GITHUB_LOGIN   optional override (default stevewoz1234567890)
-  GITHUB_TOKEN   or GH_TOKEN — recommended (GraphQL + higher REST limits)
+  GITHUB_TOKEN   or GH_TOKEN — recommended (GraphQL + higher REST limits).
+                 Loaded from repo-root `.env` by collect_github_stats.py if unset.
 """
 
 from __future__ import annotations

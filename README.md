@@ -5,7 +5,7 @@ Senior software engineer focused on **production systems**, **machine learning**
 <!-- github-stats:auto:start member-line -->
 **GitHub:** member since **17 July 2021** (~**5 years** on the platform).
 <!-- github-stats:auto:end member-line -->
-The GitHub statistics section reflects **all public repositories** returned for this account (names, counts, primary-language mix, and per-repository language data from the GitHub API).
+The GitHub statistics section uses the GitHub API: the **language table and pie** can include **private** repositories when you run the collector with a suitable `GITHUB_TOKEN`; the **repository list** is **public** repositories only.
 
 ---
 

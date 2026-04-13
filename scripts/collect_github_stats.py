@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """
-Fetch public GitHub profile statistics for README generation.
+Fetch GitHub profile statistics for README generation.
 
 Environment:
-  GITHUB_LOGIN   GitHub username (default: stevewoz1234567890)
-  GITHUB_TOKEN   PAT with read access — required for GraphQL (yearly contributions,
-                 repositories contributed to). REST-only data works with lower limits.
+  GITHUB_LOGIN   GitHub username (default: stevewoz1234567890). Must match the token
+                 owner when using private repository access.
+  GITHUB_TOKEN   PAT with read access — with `repo` scope (or fine-grained equivalent),
+                 owned **private** repositories are included in language aggregates and
+                 skills data. The README repository table still lists **public** repos only.
+                 Also read from repo-root `.env` if present (`GITHUB_TOKEN` or `GH_TOKEN`);
+                 existing environment variables take precedence.
 
 Output:
   Writes JSON to scripts/data/github-stats.json (path relative to repo root).
@@ -52,6 +56,7 @@ class CollectedStats:
     years_on_platform_rounded: int
     calendar_years_one_decimal: str
     public_repos: int
+    language_stats_repo_count: int
     followers: int
     following: int
     stars_received: int
@@ -66,6 +71,7 @@ class CollectedStats:
     languages_by_repo_inclusion: dict[str, int] = field(default_factory=dict)
     yearly_contributions: list[YearContributions] = field(default_factory=list)
     graphql_note: str = ""
+    owned_repo_names: list[str] = field(default_factory=list)
     repos: list[dict[str, Any]] = field(default_factory=list)
 
 
@@ -159,7 +165,8 @@ def _graphql(query: str, variables: dict[str, Any], token: str) -> dict[str, Any
     return parsed["data"]
 
 
-def _paginate_repos(login: str, token: str | None) -> list[dict[str, Any]]:
+def _paginate_owned_repos(login: str, token: str | None) -> list[dict[str, Any]]:
+    """Repos owned by `login`. With a token, uses /user/repos so private repos are included."""
     repos: list[dict[str, Any]] = []
     page = 1
     per_page = 100
@@ -167,7 +174,10 @@ def _paginate_repos(login: str, token: str | None) -> list[dict[str, Any]]:
         q = urllib.parse.urlencode(
             {"per_page": per_page, "page": page, "type": "owner", "sort": "full_name"}
         )
-        url = f"https://api.github.com/users/{urllib.parse.quote(login)}/repos?{q}"
+        if token:
+            url = f"https://api.github.com/user/repos?{q}"
+        else:
+            url = f"https://api.github.com/users/{urllib.parse.quote(login)}/repos?{q}"
         batch = _json_get(url, token)
         if not batch:
             break
@@ -175,6 +185,9 @@ def _paginate_repos(login: str, token: str | None) -> list[dict[str, Any]]:
         if len(batch) < per_page:
             break
         page += 1
+    if token:
+        want = login.lower()
+        return [r for r in repos if (r.get("owner") or {}).get("login", "").lower() == want]
     return [r for r in repos if not r.get("private")]
 
 
@@ -402,18 +415,22 @@ def collect(login: str, token: str | None) -> CollectedStats:
     cal_years, years_rounded = _years_since_join(created_at)
     cal_one = f"{cal_years:.1f}"
 
-    repos = _paginate_repos(login, token)
+    repos = _paginate_owned_repos(login, token)
+    profile_public_repos = int(user.get("public_repos") or 0)
     langs: dict[str, int] = defaultdict(int)
     primary_repo_counts: dict[str, int] = defaultdict(int)
     inclusion_repo_counts: dict[str, int] = defaultdict(int)
     stars = 0
     repo_rows: list[dict[str, Any]] = []
+    owned_names: list[str] = []
     for r in repos:
-        stars += int(r.get("stargazers_count") or 0)
+        if not r.get("private"):
+            stars += int(r.get("stargazers_count") or 0)
         owner = (r.get("owner") or {}).get("login")
         name = r.get("name")
         if not owner or not name:
             continue
+        owned_names.append(name)
         lang_url = f"https://api.github.com/repos/{urllib.parse.quote(owner)}/{urllib.parse.quote(name)}/languages"
         try:
             blob = _json_get(lang_url, token)
@@ -431,14 +448,15 @@ def collect(login: str, token: str | None) -> CollectedStats:
             primary = "Other"
         primary_repo_counts[primary] += 1
 
-        desc = _normalize_repo_description(name, r.get("description"), primary)
-        repo_rows.append(
-            {
-                "name": name,
-                "html_url": r.get("html_url"),
-                "description": desc,
-            }
-        )
+        if not r.get("private"):
+            desc = _normalize_repo_description(name, r.get("description"), primary)
+            repo_rows.append(
+                {
+                    "name": name,
+                    "html_url": r.get("html_url"),
+                    "description": desc,
+                }
+            )
 
     total_bytes = sum(langs.values())
     approx_mb = round(total_bytes / (1024 * 1024), 1) if total_bytes else 0.0
@@ -476,6 +494,7 @@ def collect(login: str, token: str | None) -> CollectedStats:
             contributed = None
 
     repo_rows.sort(key=lambda x: (x.get("name") or "").lower())
+    owned_names_sorted = sorted(set(owned_names), key=str.lower)
     primary_sorted = dict(sorted(primary_repo_counts.items(), key=lambda kv: (-kv[1], kv[0])))
     inclusion_sorted = dict(
         sorted(inclusion_repo_counts.items(), key=lambda kv: (-kv[1], kv[0]))
@@ -489,7 +508,8 @@ def collect(login: str, token: str | None) -> CollectedStats:
         joined_display=_format_joined(created_at),
         years_on_platform_rounded=years_rounded,
         calendar_years_one_decimal=cal_one,
-        public_repos=len(repos),
+        public_repos=profile_public_repos,
+        language_stats_repo_count=len(owned_names),
         followers=int(user.get("followers") or 0),
         following=int(user.get("following") or 0),
         stars_received=stars,
@@ -504,6 +524,7 @@ def collect(login: str, token: str | None) -> CollectedStats:
         languages_by_repo_inclusion=inclusion_sorted,
         yearly_contributions=yearly,
         graphql_note=gql_note.strip(),
+        owned_repo_names=owned_names_sorted,
         repos=repo_rows,
     )
 
@@ -514,7 +535,31 @@ def _stats_to_jsonable(s: CollectedStats) -> dict[str, Any]:
     return d
 
 
+def _load_dotenv(repo_root: Path) -> None:
+    """Populate os.environ from repo-root `.env` without overriding existing vars."""
+    path = repo_root / ".env"
+    if not path.is_file():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[7:].strip()
+        if "=" not in line:
+            continue
+        key, _, val = line.partition("=")
+        key = key.strip()
+        if not key or key in os.environ:
+            continue
+        val = val.strip()
+        if len(val) >= 2 and val[0] == val[-1] and val[0] in "\"'":
+            val = val[1:-1]
+        os.environ[key] = val
+
+
 def main() -> int:
+    _load_dotenv(REPO_ROOT)
     login = os.environ.get("GITHUB_LOGIN", DEFAULT_LOGIN).strip()
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     token = token.strip() if token else None

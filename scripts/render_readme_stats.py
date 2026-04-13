@@ -45,13 +45,15 @@ def render_core_stats(data: dict[str, Any]) -> str:
     year = now.year
     last_updated = f"{month} {year}"
 
-    n_repos = int(data["public_repos"])
+    n_public = int(data["public_repos"])
+    n_lang = int(data.get("language_stats_repo_count") or n_public)
     inclusion = data.get("languages_by_repo_inclusion") or {}
 
     lines: list[str] = [
-        f"*Languages come from the GitHub `languages` API on each **public** repository. "
-        f"A repository can list several languages; the **table** counts how many repos include each language. "
-        f"The **pie** uses the same counts normalized so the slices sum to 100% (share of all repo–language entries). "
+        f"*Language stats use the GitHub `languages` API on each **owned** repository the collector can see "
+        f"({_fmt_int(n_lang)} repos: **public** plus **private** when `GITHUB_TOKEN` has `repo` access). "
+        f"**% of repos** divides by that count (sums can exceed 100% because one repo lists multiple languages). "
+        f"The **pie** normalizes the same counts to 100%. The **repository table** below lists **public** repos only. "
         f"**Last updated:** {last_updated}.*",
         "",
     ]
@@ -70,7 +72,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             "| Metric | Value |",
             "| --- | --- |",
             f"| **Joined** | {data['joined_display']} (~{data['calendar_years_one_decimal']} calendar years; **~{data['years_on_platform_rounded']} years** rounded) |",
-            f"| **Public repositories** | **{_fmt_int(n_repos)}** |",
+            f"| **Public repositories** | **{_fmt_int(n_public)}** |",
             f"| **Followers · Following** | **{_fmt_int(int(data['followers']))}** · **{_fmt_int(int(data['following']))}** |",
             f"| **Stars received** | **{_fmt_int(int(data['stars_received']))}** |",
             f"| **Pull requests · Issues** {pr_issue_lbl} | **{_fmt_int(int(data['prs_opened_lifetime']))}** · **{_fmt_int(int(data['issues_opened_lifetime']))}** |",
@@ -82,19 +84,18 @@ def render_core_stats(data: dict[str, Any]) -> str:
         [
             "### Languages by code volume",
             "",
-            f"*{_fmt_int(n_repos)} public repositories; **% of repos** is repos that list the language / total repos "
-            f"(can exceed 100% in sum because one repo lists multiple languages).*",
+            f"*{_fmt_int(n_lang)} owned repositories in this aggregate; **% of repos** = repos that list the language / {_fmt_int(n_lang)}.*",
             "",
             "| Language | Repositories | % of repos |",
             "| --- | ---: | ---: |",
         ]
     )
 
-    if not inclusion or n_repos <= 0:
+    if not inclusion or n_lang <= 0:
         lines.extend(["| *No language data* | — | — |", ""])
     else:
         for name, count in sorted(inclusion.items(), key=lambda kv: (-kv[1], kv[0])):
-            share = 100.0 * int(count) / n_repos
+            share = 100.0 * int(count) / n_lang
             lines.append(f"| {name} | {_fmt_int(int(count))} | {share:.1f}% |")
         lines.append("")
 
@@ -106,7 +107,7 @@ def render_core_stats(data: dict[str, Any]) -> str:
             'pie title Repository language share',
         ]
     )
-    if inclusion and n_repos > 0:
+    if inclusion and n_lang > 0:
         total_inc = sum(int(v) for v in inclusion.values())
         if total_inc <= 0:
             lines.append('  "Unknown" : 100')
@@ -129,7 +130,7 @@ def _skill_lang_label(lang: str) -> str:
 
 
 def render_skills_languages_line(data: dict[str, Any]) -> str:
-    """Single markdown line: **Languages:** … — from all languages observed across public repos."""
+    """Single markdown line: **Languages:** … — from languages observed across owned repos (incl. private with token)."""
     raw_langs = list((data.get("languages_by_bytes") or {}).keys())
     labels = [_skill_lang_label(x) for x in raw_langs]
     bag: dict[str, str] = {}
@@ -139,7 +140,8 @@ def render_skills_languages_line(data: dict[str, Any]) -> str:
             bag[key] = L
     ordered = sorted(bag.values(), key=str.lower)
 
-    if any("tact" in (r.get("name") or "").lower() for r in data.get("repos", [])):
+    owned_names = data.get("owned_repo_names") or [r.get("name") or "" for r in data.get("repos", [])]
+    if any("tact" in n.lower() for n in owned_names if n):
         if "tact (ton)" not in {x.lower() for x in ordered}:
             ordered.append("Tact (TON)")
 
