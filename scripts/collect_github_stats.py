@@ -410,14 +410,54 @@ def _readable_repo_title(name: str) -> str:
     return " ".join(out)
 
 
+def _slugish_key(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
+
+
+def _desc_matches_repo_name(repo_name: str, text: str) -> bool:
+    """True if the text is only a restatement of the repo slug (not a real description)."""
+    if not repo_name or not text:
+        return False
+    name_key = _slugish_key(repo_name)
+    if len(name_key) < 4:
+        return False
+    if _slugish_key(text) == name_key:
+        return True
+    readable = _readable_repo_title(repo_name)
+    if _slugish_key(text) == _slugish_key(readable):
+        return True
+    return False
+
+
+def _finalize_description(s: str, max_len: int = 220) -> str:
+    """Trim, fix casual README phrasing, cap length for the profile table."""
+    s = (s or "").strip()
+    if not s:
+        return ""
+    low = s.lower()
+    if low.startswith("i want "):
+        s = s[7:].strip()
+        if s and s[0].islower():
+            s = s[0].upper() + s[1:]
+    return _truncate_blurb(s, max_len)
+
+
 def _normalize_repo_description(name: str, raw: str | None, primary: str | None) -> str:
-    if not _is_weak_repo_description(raw or ""):
-        return (raw or "").strip()
+    raw_s = (raw or "").strip()
+    if (
+        not _is_weak_repo_description(raw_s)
+        and not _desc_matches_repo_name(name, raw_s)
+    ):
+        return _finalize_description(raw_s)
     title = _readable_repo_title(name)
     lang = (primary or "").strip()
     if lang and lang != "Other":
-        return f"{title} — public {lang} repository."
-    return f"{title} — public code repository."
+        return _finalize_description(
+            f"{title} — {lang}: utilities, experiments, and small production-minded projects."
+        )
+    return _finalize_description(
+        f"{title} — scripts, prototypes, and reference code from hands-on work."
+    )
 
 
 def _fetch_repo_readme_text(owner: str, name: str, token: str | None) -> str | None:
@@ -458,9 +498,13 @@ def _clean_markdown_inline(s: str) -> str:
     return s.strip()
 
 
-def _blurb_from_readme(md: str, max_len: int = 220) -> str | None:
-    """First useful title or sentence from README markdown."""
+def _blurb_from_readme(
+    md: str, max_len: int = 220, repo_name: str | None = None
+) -> str | None:
+    """Best short line for a portfolio table: prefer a real summary over a bare title."""
     text = md.replace("\r\n", "\n").strip()
+    if text.startswith("\ufeff"):
+        text = text[1:].lstrip()
     if not text:
         return None
     if text.startswith("---\n"):
@@ -469,8 +513,11 @@ def _blurb_from_readme(md: str, max_len: int = 220) -> str | None:
             text = text[end + 5 :].lstrip()
 
     lines = text.split("\n")
+    heading: str | None = None
+    prose_candidates: list[str] = []
     i = 0
-    while i < len(lines):
+    max_scan = min(len(lines), 120)
+    while i < max_scan:
         raw = lines[i]
         line = raw.strip()
         i += 1
@@ -497,9 +544,10 @@ def _blurb_from_readme(md: str, max_len: int = 220) -> str | None:
 
         m = re.match(r"^(#{1,6})\s+(.+)$", line)
         if m:
-            title = _clean_markdown_inline(m.group(2).strip())
-            if title and len(title) > 1:
-                return _truncate_blurb(title, max_len)
+            t = _clean_markdown_inline(m.group(2).strip())
+            if t and len(t) > 1 and heading is None:
+                heading = t
+            continue
 
         if line.startswith(("#", ">", "|")):
             continue
@@ -511,9 +559,31 @@ def _blurb_from_readme(md: str, max_len: int = 220) -> str | None:
             continue
 
         prose = _clean_markdown_inline(line)
-        if prose and len(prose) > 10 and not prose.startswith("http"):
-            return _truncate_blurb(prose, max_len)
+        if prose and len(prose) > 12 and not prose.startswith("http"):
+            prose_candidates.append(prose)
 
+    substantial = [p for p in prose_candidates if len(p) >= 32]
+    best_prose = substantial[0] if substantial else (
+        prose_candidates[0] if prose_candidates else None
+    )
+    heading_is_slug = bool(
+        repo_name and heading and _desc_matches_repo_name(repo_name, heading)
+    )
+
+    if best_prose:
+        if heading_is_slug:
+            return _finalize_description(best_prose, max_len)
+        if not heading:
+            return _finalize_description(best_prose, max_len)
+        if len(best_prose) >= max(36, len(heading) + 10):
+            return _finalize_description(best_prose, max_len)
+
+    if heading and not heading_is_slug:
+        return _finalize_description(heading, max_len)
+    if best_prose:
+        return _finalize_description(best_prose, max_len)
+    if heading:
+        return _finalize_description(heading, max_len)
     return None
 
 
@@ -523,10 +593,13 @@ def _compose_repo_description(
     primary: str | None,
     readme_md: str | None,
 ) -> str:
+    blurb: str | None = None
     if readme_md:
-        blurb = _blurb_from_readme(readme_md)
-        if blurb:
-            return blurb
+        blurb = _blurb_from_readme(readme_md, repo_name=name)
+    if blurb and _desc_matches_repo_name(name, blurb):
+        blurb = None
+    if blurb:
+        return blurb
     return _normalize_repo_description(name, github_desc, primary)
 
 

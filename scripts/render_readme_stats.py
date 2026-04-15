@@ -196,7 +196,7 @@ def render_repos_section(data: dict[str, Any]) -> str:
     n = int(data["public_repos"])
     lines = [
         f"**{_fmt_int(n)}** public repositories (verified **{collected}** against the GitHub API; "
-        "descriptions are taken from each repo README when available, then the GitHub description, then a short fallback).",
+        "each line summarizes scope from the README intro, the GitHub description, or a concise fallback).",
         "",
         "| Repository | Description |",
         "| --- | --- |",
@@ -206,12 +206,6 @@ def render_repos_section(data: dict[str, Any]) -> str:
         url = r["html_url"]
         desc = (r.get("description") or "").strip()
         lines.append(f"| [{name}]({url}) | {desc} |")
-    lines.extend(
-        [
-            "",
-            f"*Last synced from the GitHub API: {collected} — public repository list and descriptions (token recommended for rate limits).*",
-        ]
-    )
     return "\n".join(lines).rstrip() + "\n"
 
 
